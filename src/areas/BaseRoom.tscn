@@ -21,6 +21,8 @@ transform = Transform2D( 1, 0, 0, 1, 140, 0 )
 
 [node name="Doors" type="Node2D" parent="Layout"]
 
+[node name="Interactables" type="Node2D" parent="Layout"]
+
 [node name="Projectiles" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]

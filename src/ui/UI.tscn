@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/ui/ui.gd" type="Script" id=1]
 [ext_resource path="res://src/ui/EscapeMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/ui/dialogue_panel.gd" type="Script" id=3]
-[ext_resource path="res://assets/font/jancient.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://src/ui/JobBoard.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/ui/dialogue_panel.gd" type="Script" id=4]
+[ext_resource path="res://assets/font/jancient.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 4 )
+font_data = ExtResource( 5 )
 
 [node name="UI" type="CanvasLayer"]
 pause_mode = 2
@@ -28,11 +29,17 @@ margin_top = -80.0
 margin_right = 594.0
 margin_bottom = 640.0
 
+[node name="JobBoard" parent="Menus" instance=ExtResource( 3 )]
+
 [node name="Dialogue" type="Control" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -165.0
+margin_left = 5.41653
+margin_top = -188.987
+margin_right = 5.4165
+margin_bottom = -23.9871
+mouse_filter = 2
 
 [node name="DialoguePanel" type="Panel" parent="Dialogue"]
 anchor_left = 0.5
@@ -42,7 +49,7 @@ margin_left = -260.0
 margin_top = 12.0
 margin_right = 260.0
 margin_bottom = -12.0
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Dialogue/DialoguePanel"]
 anchor_right = 1.0

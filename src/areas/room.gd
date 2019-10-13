@@ -8,6 +8,8 @@ onready var dialogue_zones = $Zones/Dialogue
 
 onready var tilesets = $Tilesets
 
+onready var player = $Player
+
 
 func _ready():
 	for zone in audio_zones.get_children():
@@ -15,18 +17,10 @@ func _ready():
 		
 #	AudioEngine.play_background_music(default_track)
 		
-	$Player.connect("death", self, "_on_player_death")
+	player.connect("death", self, "_on_player_death")
 	
-	
-	for enemy in get_tree().get_nodes_in_group("enemies"):
-		if enemy.global_position.y < $Levels/First.global_position.y:
-			enemy.level = "Regular"
-		else:
-			if enemy.name.begins_with("Mushroom"):
-				enemy.level = "Transform"
-			elif enemy.name.begins_with("Slime"):
-				enemy.level = "Monster"
-				enemy._transform()
+	for interactable in get_tree().get_nodes_in_group("interactive"):
+		player.connect("interact", interactable, "_on_player_interacted")
 
 	
 func get_tile_under_player_position():
@@ -42,6 +36,8 @@ func get_tile_under_player_position():
 				return tilemap.map_to_world(tilemap.world_to_map(vector)) * 3 + position
 		tilemap.world_to_map(player_position)
 	
+func _on_player_death():
+	pass
 	
 func _on_audio_zone_exited(body):
 	if body is Player:

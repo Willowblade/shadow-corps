@@ -2,7 +2,7 @@ extends CenterContainer
 
 var should_pause = true
 
-signal close(menu)
+signal close
 
 onready var main_buttons = {
 	"resume": get_node("PanelContainer/Contents/ResumeButton"),
@@ -17,14 +17,14 @@ func _ready():
 
 func _on_resume_button_pressed():
 	print("Resume button pressed!")
-	emit_signal("close", self)
+	emit_signal("close")
 
 func _on_exit_menu_button_pressed():
-	emit_signal("close", self)
+	emit_signal("close")
 	Flow.go_to_main_menu()
 	
 func _on_exit_desktop_button_pressed():
 	Flow.quit()
 
 func close():
-	emit_signal("close", self)
+	emit_signal("close")

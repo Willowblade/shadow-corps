@@ -17,6 +17,12 @@ func go_to_main_menu():
 	Flow.resume()
 	get_tree().change_scene_to(menu)
 	
+func go_to_level(level: PackedScene):
+#	var loaded_level = load(level)
+	AudioEngine.reset()
+	Flow.resume()
+	get_tree().change_scene_to(level)
+	
 func pause():
 	get_tree().paused = true
 

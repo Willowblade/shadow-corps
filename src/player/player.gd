@@ -5,6 +5,7 @@ class_name Player
 signal upgrade_gained
 signal health_lost
 signal reset_health
+signal interact
 signal death
 
 # Constants
@@ -208,6 +209,10 @@ func process_controls(delta):
 	var jump_pressed = Input.is_action_just_pressed("jump")
 	var jump_held = not jump_pressed and Input.is_action_pressed("jump")
 	var attack_pressed = Input.is_action_just_pressed("basic_attack")
+	var interact_pressed = Input.is_action_just_pressed("ui_interact")
+	
+	if interact_pressed:
+		emit_signal("interact")
 	
 	# x movement
 	var speed_change = (int(right_pressed) - int(left_pressed)) * ACCEL * delta * 12
