@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=8]
+code = "shader_type canvas_item;
+
+uniform vec4 modulation_color : hint_color;
+uniform float min_degree : hint_range(0, 1); // 0.05
+uniform float max_degree : hint_range(0, 1); // 0.4
+uniform float time_modulation : hint_range(0, 1); // 0.8a
+
+void fragment() {
+	vec4 white = vec4(0.6, 0.6, 0.6, 1.0);
+	vec4 original = texture(TEXTURE, UV);
+	float degree = 0.3 + abs(sin(TIME * time_modulation * 8.0)) * 0.4;
+	vec4 color_mod = vec4(white.rgb + original.rgb, white.a * degree * original.a);
+	COLOR = color_mod;
+}"
+
+[resource]
+shader = SubResource( 8 )
+shader_param/modulation_color = Color( 1, 1, 1, 1 )
+shader_param/min_degree = 0.5
+shader_param/max_degree = 0.606
+shader_param/time_modulation = 1.0

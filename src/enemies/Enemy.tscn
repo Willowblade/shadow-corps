@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/enemies/enemy.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 23.3647
+
+[node name="Enemy" type="KinematicBody2D" groups=[
+"enemies",
+]]
+collision_layer = 4
+script = ExtResource( 1 )
+level = "Regular"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AttackDetectionArea" type="Area2D" parent="."]
+gravity = 0.0
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetectionArea"]
+shape = SubResource( 1 )
+
+[node name="RayCasts" type="Node2D" parent="."]
+
+[node name="Down" type="RayCast2D" parent="RayCasts"]
+
+[node name="Up" type="RayCast2D" parent="RayCasts"]
+
+[node name="Left" type="RayCast2D" parent="RayCasts"]
+
+[node name="Right" type="RayCast2D" parent="RayCasts"]
+
+[node name="LeftCorner" type="RayCast2D" parent="RayCasts"]
+
+[node name="RightCorner" type="RayCast2D" parent="RayCasts"]
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="NormalTouchDamageArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="TransformedTouchDamageArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
