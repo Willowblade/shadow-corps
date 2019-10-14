@@ -12,6 +12,7 @@ func _on_body_entered(body):
 	if body is Player:
 		match type:
 			"background":
+			
 				AudioEngine.play_background_music(audio_track)
 			"sound":
 				AudioEngine.play_sound(audio_track)

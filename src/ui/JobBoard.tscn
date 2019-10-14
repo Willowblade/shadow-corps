@@ -74,8 +74,8 @@ window_title = ""
 [node name="Control" type="Control" parent="ConfirmationDialog"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 278.0
-margin_bottom = 168.0
+margin_right = 279.0
+margin_bottom = 171.0
 mouse_filter = 2
 
 [node name="Description" type="RichTextLabel" parent="ConfirmationDialog/Control"]

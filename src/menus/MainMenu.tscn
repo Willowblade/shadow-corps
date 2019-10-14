@@ -97,7 +97,6 @@ margin_right = 203.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 100, 0 )
 tick_count = 100
-ticks_on_borders = false
 
 [node name="Buttons" type="HBoxContainer" parent="OptionsMenuContainer/VBoxContainer"]
 margin_top = 44.0

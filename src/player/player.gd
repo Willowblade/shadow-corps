@@ -180,11 +180,16 @@ func update_animation():
 		State.IDLE:
 			sprites.play("idle")
 		State.RUN:
-			sprites.offset.x = 0
-			sprites.play("walk")
+			var run_pressed = Input.is_action_pressed("ui_run")
+			if run_pressed:
+				sprites.play("run")
+				# TODO better system
+				ACCEL = 300
+			else:
+				sprites.play("walk")
+				ACCEL = 200
 		State.JUMP:
-			sprites.play("idle")
-#			sprites.play("jump")
+			sprites.play("jump")
 
 func set_orientation():
 	if motion.x < 0:
@@ -206,9 +211,9 @@ func process_controls(delta):
 	# Get player input
 	var left_pressed = Input.is_action_pressed("ui_left")
 	var right_pressed = Input.is_action_pressed("ui_right")
-	var jump_pressed = Input.is_action_just_pressed("jump")
-	var jump_held = not jump_pressed and Input.is_action_pressed("jump")
-	var attack_pressed = Input.is_action_just_pressed("basic_attack")
+	var jump_pressed = Input.is_action_just_pressed("ui_jump")
+	var jump_held = not jump_pressed and Input.is_action_pressed("ui_ump")
+	var attack_pressed = Input.is_action_just_pressed("ui_attack")
 	var interact_pressed = Input.is_action_just_pressed("ui_interact")
 	
 	if interact_pressed:
@@ -246,7 +251,7 @@ func process_controls(delta):
 				motion.y = JUMP_SPEED
 			remaining_jumps -= 1
 			var index = (randi() % 3) + 1
-			play_effect("res://assets/audio/sfx/SFX_Jump" + str(index) + ".ogg")
+#			play_effect("res://assets/audio/sfx/SFX_Jump" + str(index) + ".ogg")
 			jump_boost_speed = motion.y
 			get_tree().create_timer(0.45).connect("timeout", self, "stop_hold_jump")
 			state = State.JUMP
