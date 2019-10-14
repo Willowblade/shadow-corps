@@ -51,7 +51,9 @@ var upgrades = {
 var motion: Vector2 = Vector2()
 onready var animation_player = $AnimationPlayer
 onready var sprites = $AnimatedSprite
-onready var hitboxes = {}
+onready var hitboxes = {
+	"attack": $Hitboxes/Attack
+}
 
 var jump_boosting = false
 var jump_boost_speed = 0
@@ -59,8 +61,9 @@ var jump_boost_speed = 0
 var spawn_location: Vector2 = Vector2(0, 0)
 
 
-func check_hit_enemies(hitbox: NodePath):
-	for body in get_node(hitbox).get_overlapping_bodies():
+func check_hit_enemies(hitbox_name: String):
+	var hitbox = hitboxes[hitbox_name]
+	for body in hitbox.get_overlapping_bodies():
 		if body.is_in_group("enemies"):
 			body.take_damage(5)
 
@@ -274,7 +277,8 @@ func process_controls(delta):
 	
 func attack():
 	state = State.ATTACK
-	wait_for_animation("attack")
+	animation_player.play("attack")
+	yield(animation_player, "animation_finished")
 	if state == State.ATTACK:
 		state = State.IDLE
 

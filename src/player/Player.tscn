@@ -1,23 +1,23 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/player/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/player/idle/idle.png" type="Texture" id=2]
-[ext_resource path="res://assets/graphics/player/attack/attack_0.png" type="Texture" id=3]
-[ext_resource path="res://assets/graphics/player/attack/attack_1.png" type="Texture" id=4]
-[ext_resource path="res://assets/graphics/player/attack/attack_2.png" type="Texture" id=5]
-[ext_resource path="res://assets/graphics/player/attack/attack_3.png" type="Texture" id=6]
-[ext_resource path="res://assets/graphics/player/attack/attack_4.png" type="Texture" id=7]
-[ext_resource path="res://assets/graphics/player/walk/walk_0.png" type="Texture" id=8]
-[ext_resource path="res://assets/graphics/player/walk/walk_1.png" type="Texture" id=9]
-[ext_resource path="res://assets/graphics/player/walk/walk_2.png" type="Texture" id=10]
-[ext_resource path="res://assets/graphics/player/walk/walk_3.png" type="Texture" id=11]
-[ext_resource path="res://assets/graphics/player/run/run_0.png" type="Texture" id=12]
-[ext_resource path="res://assets/graphics/player/run/run_1.png" type="Texture" id=13]
-[ext_resource path="res://assets/graphics/player/run/run_2.png" type="Texture" id=14]
-[ext_resource path="res://assets/graphics/player/run/run_3.png" type="Texture" id=15]
-[ext_resource path="res://assets/graphics/player/jump/jump_1.png" type="Texture" id=16]
-[ext_resource path="res://assets/graphics/player/jump/jump_2.png" type="Texture" id=17]
-[ext_resource path="res://assets/graphics/player/jump/jump_3.png" type="Texture" id=18]
+[ext_resource path="res://assets/graphics/player/run/run_0.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/player/run/run_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/player/run/run_2.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/player/run/run_3.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/player/jump/jump_1.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/player/jump/jump_2.png" type="Texture" id=8]
+[ext_resource path="res://assets/graphics/player/jump/jump_3.png" type="Texture" id=9]
+[ext_resource path="res://assets/graphics/player/attack/attack_0.png" type="Texture" id=10]
+[ext_resource path="res://assets/graphics/player/attack/attack_1.png" type="Texture" id=11]
+[ext_resource path="res://assets/graphics/player/attack/attack_2.png" type="Texture" id=12]
+[ext_resource path="res://assets/graphics/player/attack/attack_3.png" type="Texture" id=13]
+[ext_resource path="res://assets/graphics/player/attack/attack_4.png" type="Texture" id=14]
+[ext_resource path="res://assets/graphics/player/walk/walk_0.png" type="Texture" id=15]
+[ext_resource path="res://assets/graphics/player/walk/walk_1.png" type="Texture" id=16]
+[ext_resource path="res://assets/graphics/player/walk/walk_2.png" type="Texture" id=17]
+[ext_resource path="res://assets/graphics/player/walk/walk_3.png" type="Texture" id=18]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -26,32 +26,30 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "run",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "jump",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "attack",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=7]
 resource_name = "attack"
-
-[sub_resource type="Animation" id=3]
-length = 0.4
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:animation")
 tracks/0/interp = 1
@@ -62,7 +60,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ "attackstab" ]
+"values": [ "attack" ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimatedSprite:frame")
@@ -71,7 +69,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.32 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 4 ]
@@ -83,69 +81,19 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.1, 0.16 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ "res://assets/audio/sfx/SFX_BladeAttack.ogg" ],
-"method": "play_effect"
-}, {
-"args": [ NodePath("StabHitbox") ],
-"method": "check_hit_enemies"
-} ]
-}
-
-[sub_resource type="Animation" id=4]
-length = 0.8
-tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "stabfast" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AnimatedSprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.8 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0, 16 ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
-"args": [ "res://assets/audio/sfx/SFX_BladeAttack.ogg" ],
-"method": "play_effect"
-}, {
-"args": [ NodePath("StabHitbox") ],
-"method": "check_hit_enemies"
-}, {
-"args": [ NodePath("StabHitbox") ],
-"method": "check_hit_enemies"
-}, {
-"args": [ NodePath("StabHitbox") ],
+"args": [ "attack" ],
 "method": "check_hit_enemies"
 } ]
 }
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 5, 14 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 4.79274, 12.6281 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
@@ -155,8 +103,8 @@ script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "jump"
-playing = true
+animation = "attack"
+frame = 4
 offset = Vector2( 0, -35 )
 
 [node name="HitboxTimer" type="Timer" parent="."]
@@ -164,9 +112,7 @@ wait_time = 0.01
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/attack = SubResource( 2 )
-anims/stab = SubResource( 3 )
-anims/stab_fast = SubResource( 4 )
+anims/attack = SubResource( 7 )
 
 [node name="DashRay" type="RayCast2D" parent="."]
 position = Vector2( 0, -16 )
@@ -185,5 +131,13 @@ drag_margin_bottom = 0.0
 modulate = Color( 0.662745, 1, 0.0666667, 1 )
 position = Vector2( 0, -14 )
 shape = SubResource( 5 )
+
+[node name="Hitboxes" type="Node2D" parent="."]
+
+[node name="Attack" type="Area2D" parent="Hitboxes"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Attack"]
+position = Vector2( 27.927, -18.618 )
+shape = SubResource( 6 )
 [connection signal="timeout" from="HitboxTimer" to="." method="_on_HitboxTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
