@@ -10,7 +10,6 @@ radius = 23.3647
 ]]
 collision_layer = 4
 script = ExtResource( 1 )
-level = "Regular"
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 
@@ -42,10 +41,8 @@ shape = SubResource( 1 )
 
 [node name="AttackTimer" type="Timer" parent="."]
 
-[node name="NormalTouchDamageArea" type="Area2D" parent="."]
+[node name="TouchDamageArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="TransformedTouchDamageArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
+[node name="Hitboxes" type="Node2D" parent="."]

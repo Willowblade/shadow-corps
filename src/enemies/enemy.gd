@@ -52,6 +52,7 @@ onready var hit_detection_area = $AttackDetectionArea
 onready var touch_damage_area = $NormalTouchDamageArea
 
 onready var attack_hit_boxes = {
+	"attack": $Hitboxes/Attack
 }
 
 onready var attack_timer = $AttackTimer as Timer
@@ -92,9 +93,6 @@ func _ready():
 	stats.health = HEALTH
 	
 	attack_timer.connect("timeout", self, "_on_attack_timer_timeout")
-	
-	for child in touch_damage_areas["transformed"].get_children():
-		if child is CollisionShape2D: child.set_disabled(true)
 		
 	randomize()
 	set_physics_process(false)

@@ -52,7 +52,8 @@ var motion: Vector2 = Vector2()
 onready var animation_player = $AnimationPlayer
 onready var sprites = $AnimatedSprite
 onready var hitboxes = {
-	"attack": $Hitboxes/Attack
+	"attack": $Hitboxes/Attack,
+	"aerial_attack": $Hitboxes/AerialAttack,
 }
 
 var jump_boosting = false
@@ -192,7 +193,19 @@ func update_animation():
 				sprites.play("walk")
 				ACCEL = 200
 		State.JUMP:
-			sprites.play("jump")
+			if sprites.animation != "jump":
+				sprites.animation = "jump"
+			sprites.playing = false
+			if not in_air:
+				sprites.frame = 0
+			else:
+				if abs(motion.y) < 40: 
+					sprites.frame = 2
+				elif motion.y > 0:
+					sprites.frame = 3
+				else:
+					sprites.frame = 1
+				
 
 func set_orientation():
 	if motion.x < 0:

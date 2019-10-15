@@ -3,7 +3,7 @@ extends Node2D
 onready var level: Node = null
 onready var ui = $UI
 
-onready var hub: PackedScene = preload("res://src/areas/JobBoardTestRoom.tscn")
+onready var hub: PackedScene = preload("res://src/areas/CaveTestRoom.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

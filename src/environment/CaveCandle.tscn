@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/graphics/tilesets/tileset_cave_1.png" type="Texture" id=1]
+[ext_resource path="res://assets/graphics/environment/candle-light.png" type="Texture" id=2]
+
+[node name="CaveCandle" type="Sprite"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 112, 32, 16, 16 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 2 )
+texture_scale = 2.5
+shadow_enabled = true

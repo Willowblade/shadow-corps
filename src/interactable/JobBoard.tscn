@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12.7927, 10 )
 
-[node name="JobBoard" instance=ExtResource( 1 )]
+[node name="JobBoard" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="0"]
