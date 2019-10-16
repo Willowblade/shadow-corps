@@ -17,9 +17,5 @@ func deactivate():
 	hide()
 
 func _process(delta):
-	var health = 1
-	if alraune.stats.transformed:
-		health = alraune.stats.health * 1.0 / alraune.MONSTER_HEALTH
-	else:
-		health = alraune.stats.health * 1.0 / alraune.REGULAR_HEALTH
+	var health = alraune.stats.health * 1.0 / alraune.MONSTER_HEALTH
 	sprite.region_rect.size.x = max(health * 100, 0)

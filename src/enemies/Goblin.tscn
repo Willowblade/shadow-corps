@@ -1,37 +1,39 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/enemies/Enemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/graphics/enemy/goblin/idle/goblin_idle_0.png" type="Texture" id=2]
-[ext_resource path="res://assets/graphics/enemy/goblin/idle/goblin_idle_1.png" type="Texture" id=3]
-[ext_resource path="res://assets/graphics/enemy/goblin/attack/goblin_attack_0.png" type="Texture" id=4]
-[ext_resource path="res://assets/graphics/enemy/goblin/attack/goblin_attack_1.png" type="Texture" id=5]
-[ext_resource path="res://assets/graphics/enemy/goblin/attack/goblin_attack_2.png" type="Texture" id=6]
-[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_0.png" type="Texture" id=7]
-[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_1.png" type="Texture" id=8]
-[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_2.png" type="Texture" id=9]
-[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_3.png" type="Texture" id=10]
+[ext_resource path="res://src/enemies/goblin.gd" type="Script" id=2]
+[ext_resource path="res://assets/graphics/enemy/goblin/idle/goblin_idle_0.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/enemy/goblin/idle/goblin_idle_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_0.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_1.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_2.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_3.png" type="Texture" id=8]
+[ext_resource path="res://assets/graphics/enemy/goblin/attack/goblin_attack_0.png" type="Texture" id=9]
+[ext_resource path="res://assets/graphics/enemy/goblin/attack/goblin_attack_1.png" type="Texture" id=10]
+[ext_resource path="res://assets/graphics/enemy/goblin/attack/goblin_attack_2.png" type="Texture" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "idle",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "attack",
-"speed": 6.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "walk",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "attack",
+"speed": 6.0
 } ]
 
 [sub_resource type="Animation" id=2]
 resource_name = "attack"
-length = 0.3
+length = 0.9
+step = 0.15
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:animation")
 tracks/0/interp = 1
@@ -39,10 +41,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ "attack" ]
+"values": [ "attack", "idle" ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimatedSprite:frame")
@@ -51,10 +53,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0, 2 ]
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 0 ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath(".")
@@ -63,27 +65,33 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.3 ),
+"times": PoolRealArray( 0.45 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ NodePath("") ],
+"args": [ "attack" ],
 "method": "check_hit_player"
 } ]
 }
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 8.01145, 10 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 18.8682, 13.4472 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 9.17532, 10 )
+extents = Vector2( 5.03281, 7.50243 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 6.92856, 6.79668 )
 
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 125.062, 59.6953 )
+
 [node name="Goblin" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+CHASE_SPEED = 100
+PATROL_SPEED = 60
 
 [node name="AnimatedSprite" parent="." index="0"]
 frames = SubResource( 1 )
@@ -95,45 +103,57 @@ offset = Vector2( 0, -35 )
 anims/attack = SubResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2( 0, -9.96643 )
-shape = SubResource( 6 )
-
-[node name="AttackDetectionArea" parent="." index="3"]
-position = Vector2( 0, -4.41428 )
-
-[node name="CollisionShape2D" parent="AttackDetectionArea" index="0"]
-position = Vector2( 0, -8.81467 )
+position = Vector2( 0, -10.0705 )
 shape = SubResource( 3 )
 
+[node name="AttackDetectionArea" parent="." index="3"]
+position = Vector2( -0.0565605, -4.41428 )
+
+[node name="CollisionShape2D" parent="AttackDetectionArea" index="0"]
+position = Vector2( 0, -9.09468 )
+shape = SubResource( 4 )
+
 [node name="Down" parent="RayCasts" index="0"]
+enabled = true
 cast_to = Vector2( 0, 1 )
 
 [node name="Up" parent="RayCasts" index="1"]
 position = Vector2( 0, -27.7587 )
+enabled = true
 cast_to = Vector2( 0, -1 )
 
 [node name="Left" parent="RayCasts" index="2"]
 position = Vector2( -12.2855, -13.2289 )
+enabled = true
 cast_to = Vector2( -1, 0 )
 
 [node name="Right" parent="RayCasts" index="3"]
 position = Vector2( 12.1782, -13.2289 )
+enabled = true
 cast_to = Vector2( 1, 0 )
 
 [node name="LeftCorner" parent="RayCasts" index="4"]
-position = Vector2( -12.2855, 0 )
-cast_to = Vector2( 0, 5 )
+position = Vector2( -5.7473, -0.0405521 )
+enabled = true
+cast_to = Vector2( 0, 10 )
 
 [node name="RightCorner" parent="RayCasts" index="5"]
-position = Vector2( 12.1782, 0 )
-cast_to = Vector2( 0, 5 )
+position = Vector2( 4.53059, 0 )
+enabled = true
+cast_to = Vector2( 0, 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TouchDamageArea" index="0"]
-position = Vector2( 0, -9.96643 )
+position = Vector2( 0, -8.06755 )
 shape = SubResource( 5 )
 
 [node name="Attack" type="Area2D" parent="Hitboxes" index="0"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Attack" index="0"]
-position = Vector2( 14.8852, -9.96643 )
-shape = SubResource( 4 )
+position = Vector2( 16.372, -16.0065 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D" parent="DetectionZone" index="0"]
+position = Vector2( 0, -12.4751 )
+shape = SubResource( 7 )
+
+[editable path="DetectionZone"]

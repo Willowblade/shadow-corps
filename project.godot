@@ -116,7 +116,14 @@ ui_jump={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="tiles"
+2d_physics/layer_2="player"
+2d_physics/layer_3="enemy"
+
 [rendering]
 
 quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

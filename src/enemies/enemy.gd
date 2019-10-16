@@ -1,7 +1,6 @@
 extends KinematicBody2D
 class_name Enemy
 
-
 const UP = Vector2(0, -1)
 
 onready var death_sound = null
@@ -15,11 +14,13 @@ export(int) var HEALTH = 10
 export (int) var ATTACK = 1
 
 export(bool) var moves = true
+export(bool) var only_chases = false
 
 export(float) var ATTACK_COOLDOWN = 1.0
 
-export var ACCELERATION = 250
-export var SPEED = 0
+export var CHASE_SPEED = 150
+export var PATROL_SPEED = 100
+export var SPEED = 100
 export var FRICTION = 0
 export var GRAVITY = 10
 export var MAX_GRAVITY = 1000
@@ -48,16 +49,16 @@ onready var rays = {
 	"left_corner": $RayCasts/LeftCorner
 }
 
+onready var detection_zone = $DetectionZone
+
 onready var hit_detection_area = $AttackDetectionArea
-onready var touch_damage_area = $NormalTouchDamageArea
+onready var touch_damage_area = $TouchDamageArea
 
 onready var attack_hit_boxes = {
 	"attack": $Hitboxes/Attack
 }
 
 onready var attack_timer = $AttackTimer as Timer
-
-
 
 var stats = {
 	"health": 1,
@@ -89,7 +90,9 @@ func check_touch_damage():
 	if touch_damage_area.overlaps_body(chasing):
 		chasing.take_enemy_damage(1)
 
-func _ready():	
+func _ready():
+	detection_zone.connect("body_entered", self, "_on_body_entered")
+	detection_zone.connect("body_exited", self, "_on_body_exited")
 	stats.health = HEALTH
 	
 	attack_timer.connect("timeout", self, "_on_attack_timer_timeout")
@@ -99,33 +102,39 @@ func _ready():
 	_initialize()
 	set_physics_process(true)
 	
+func _on_body_entered(body):
+	if body is Player:
+		set_chase(body)
+				
+func _on_body_exited(body):
+	if body is Player:
+		set_patrol()
+	
 func _on_attack_timer_timeout():
 	can_attack = true
 
 func reboot_horizontal_motion():
 	var math = [1,-1]
 	var pick_math = math[randi() % math.size()]
-	motion.x = (pick_math * (SPEED + ACCELERATION))
+	motion.x = (pick_math * SPEED)
 
 func restore_speed():
 	if motion.x > 0:
-		if motion.x < SPEED + ACCELERATION:
-			motion.x  = SPEED + ACCELERATION
+		if motion.x < SPEED:
+			motion.x  = SPEED
 	elif motion.x < 0:
-		if motion.x > -(SPEED + ACCELERATION):
-			motion.x  = -(SPEED + ACCELERATION)
+		if motion.x > -SPEED:
+			motion.x  = -SPEED
 
 func is_alive():
 	return stats.health > 0
 	
 func set_patrol():
-	print("Set patrol")
 	chasing = null
 	if state == State.CHASE:
 		state = State.PATROL
 	
 func set_chase(player):
-	print("Set chase")
 	chasing = player
 	if state == State.PATROL:
 		state = State.CHASE
@@ -136,11 +145,10 @@ func _initialize():
 	reboot_horizontal_motion()
 
 func take_damage(damage: int):
-	print(damage)
 	if invincible:
 		return
 		
-	if is_alive() and state != State.TRANSFORMING:
+	if is_alive():
 		stats.health -= damage
 		
 		if not is_alive():
@@ -191,16 +199,14 @@ func _die():
 
 
 func horizontal_patrol():
-#	print(rays.right_corner.is_colliding(), " ", rays.left_corner.is_colliding())
 	if not rays.right_corner.is_colliding() || not rays.left_corner.is_colliding():
 		var move_direction = int(rays.right_corner.is_colliding()) - int(rays.left_corner.is_colliding())
-		motion.x = (SPEED + ACCELERATION) * move_direction
+		motion.x = SPEED * move_direction
 	
-#	print(rays.right.is_colliding(), " ", rays.left.is_colliding())
 	if rays.right.is_colliding() || rays.left.is_colliding():
 #		print(rays.right.get_collider(), rays.left.get_collider(), self)
 		var move_direction = int(rays.right.is_colliding()) - int(rays.left.is_colliding())
-		motion.x = -(SPEED + ACCELERATION) * move_direction
+		motion.x = -SPEED * move_direction
 		
 func get_chasing_direction():
 	if chasing:
@@ -211,12 +217,28 @@ func get_chasing_direction():
 		
 	
 func chase():
+	SPEED = CHASE_SPEED
+	if name == "Goblin3":
+		print("Set speed to chase speed... ", CHASE_SPEED, " ", SPEED)
 	if motion.x == 0:
 		reboot_horizontal_motion()
 		
+	if name == "Goblin3":
+		print(motion)
+		
 	restore_speed()
 	
-	motion.x = get_chasing_direction() * (SPEED + ACCELERATION)
+	if name == "Goblin3":
+		print(motion)
+	
+	motion.x = get_chasing_direction() * SPEED
+	
+	if only_chases:
+		rays.right_corner.force_raycast_update()
+		rays.left_corner.force_raycast_update()
+	
+	if name == "Goblin3":
+		print("hehe", motion, !rays.right_corner.is_colliding(), !rays.left_corner.is_colliding())
 	
 	if motion.x > 0 and !rays.right_corner.is_colliding():
 		motion.x = 0
@@ -227,15 +249,13 @@ func chase():
 		attack()
 	
 func attack():
+	print("Should attack")
 	if can_attack:
 		motion.x = 0
 		
 		state = State.ATTACK
 		
-		if stats.transformed:
-			animation_player.play("transformed_attack")
-		else:
-			animation_player.play("normal_attack")
+		animation_player.play("attack")
 		yield(animation_player, "animation_finished")
 		play_attack_timer()
 		
@@ -243,11 +263,18 @@ func attack():
 			state = State.CHASE
 		else:
 			state = State.PATROL
+			
 
 func set_animation():
 	if state == State.PATROL or state == State.CHASE:
 		if sprite.animation != "walk":
 			sprite.play("walk")
+			
+		if not rays.right_corner.is_colliding() and motion.x == 0:
+			sprite.play("idle")
+		elif not rays.left_corner.is_colliding() and motion.x == 0:
+			sprite.play("idle") 
+			
 	elif state == State.IDLE:
 		if sprite.animation != "idle":
 			sprite.play("idle")
@@ -258,14 +285,21 @@ func set_orientation():
 		hit_detection_area.scale.x = -1
 		hit_detection_area.scale.x = -1
 		sprite.scale.x = -1
+		for hitbox in attack_hit_boxes.values():
+			hitbox.scale.x = -1
 	elif motion.x > 0:
 		hit_detection_area.scale.x = 1
 		hit_detection_area.scale.x = 1
 		hit_detection_area.scale.x = 1
 		sprite.scale.x = 1
+		for hitbox in attack_hit_boxes.values():
+			hitbox.scale.x = 1
 
 
-func patrol():
+func patrol():	
+	SPEED = PATROL_SPEED
+	if name == "Goblin3":
+		print("Set speed to patrol speed... ", PATROL_SPEED, " ", SPEED)
 	if motion.x == 0:
 		reboot_horizontal_motion()
 		
@@ -273,8 +307,9 @@ func patrol():
 	
 	horizontal_patrol()
 
-func check_hit_player(hitbox: NodePath):
+func check_hit_player(hitbox_name: String):
 	"""Should be called during animations with a relevant area2d to check for other body inside."""
 	if chasing:
-		if get_node(hitbox).overlaps_body(chasing):
+		var hitbox = attack_hit_boxes[hitbox_name]
+		if hitbox.overlaps_body(chasing):
 			chasing.take_enemy_damage(1)

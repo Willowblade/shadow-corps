@@ -4,7 +4,7 @@
 [ext_resource path="res://src/tilesets/Cave.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/environment/CaveCandle.tscn" type="PackedScene" id=3]
 
-[node name="BaseRoom" instance=ExtResource( 1 )]
+[node name="BaseRoom" index="0" instance=ExtResource( 1 )]
 
 [node name="CaveBackground" parent="Layout/Tilesets" index="0" instance=ExtResource( 2 )]
 modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
@@ -21,3 +21,6 @@ position = Vector2( 174.855, 43.9238 )
 
 [node name="CaveCandle2" parent="Layout/Decorations" index="2" instance=ExtResource( 3 )]
 position = Vector2( 42.3596, 42.1314 )
+
+[node name="Player" parent="." index="4"]
+emits_light = true

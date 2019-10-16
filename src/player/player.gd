@@ -24,6 +24,9 @@ var DOUBLE_JUMP_SPEED = (JUMP_SPEED * 0.925)
 
 onready var effect_player = AudioEngine.effects.effect_players[9]
 
+export var emits_light = false
+export var follow_camera = true
+
 # Instance variables
 var hp : int = 1
 var hp_current : int = 1
@@ -69,7 +72,10 @@ func check_hit_enemies(hitbox_name: String):
 			body.take_damage(5)
 
 func _ready():
-	
+	if not emits_light:
+		$Light2D.hide()
+	if not follow_camera:
+		$Camera2D.current=false
 	# Setup player stats
 	hp = 4
 	hp_current = hp
@@ -187,11 +193,8 @@ func update_animation():
 			var run_pressed = Input.is_action_pressed("ui_run")
 			if run_pressed:
 				sprites.play("run")
-				# TODO better system
-				ACCEL = 300
 			else:
 				sprites.play("walk")
-				ACCEL = 200
 		State.JUMP:
 			if sprites.animation != "jump":
 				sprites.animation = "jump"
@@ -208,11 +211,11 @@ func update_animation():
 				
 
 func set_orientation():
-	if motion.x < 0:
+	if motion.x < -1:
 		sprites.scale.x = -1
 		for hitbox in hitboxes.values():
 			hitbox.scale.x = -1
-	if motion.x > 0:
+	if motion.x > 1:
 		sprites.scale.x = 1
 		for hitbox in hitboxes.values():
 			hitbox.scale.x = 1
@@ -231,6 +234,12 @@ func process_controls(delta):
 	var jump_held = not jump_pressed and Input.is_action_pressed("ui_ump")
 	var attack_pressed = Input.is_action_just_pressed("ui_attack")
 	var interact_pressed = Input.is_action_just_pressed("ui_interact")
+	
+	var run_pressed = Input.is_action_pressed("ui_run")
+	if run_pressed:
+		ACCEL = 250
+	else:
+		ACCEL = 125
 	
 	if interact_pressed:
 		emit_signal("interact")

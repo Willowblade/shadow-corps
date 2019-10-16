@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/enemies/enemy.gd" type="Script" id=1]
+[ext_resource path="res://src/zones/DetectionZone.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 23.3647
@@ -46,3 +47,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="Hitboxes" type="Node2D" parent="."]
+
+[node name="DetectionZone" parent="." instance=ExtResource( 2 )]
+
+[editable path="DetectionZone"]
