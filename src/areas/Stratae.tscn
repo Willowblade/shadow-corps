@@ -20,10 +20,6 @@ polygon = PoolVector2Array( -0.2323, 117.179, 0, 210, 320, 210, 320, 120, 380, 1
 [node name="JobBoard" parent="Layout/Interactables" index="0" instance=ExtResource( 3 )]
 position = Vector2( 33.8716, 206.743 )
 
-[node name="Player" parent="." index="4"]
-position = Vector2( 160, 23.5489 )
-follow_camera = false
-
 [node name="Camera2D" type="Camera2D" parent="." index="6"]
 position = Vector2( 154.37, 124.966 )
 current = true

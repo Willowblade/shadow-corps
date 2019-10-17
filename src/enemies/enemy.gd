@@ -218,27 +218,16 @@ func get_chasing_direction():
 	
 func chase():
 	SPEED = CHASE_SPEED
-	if name == "Goblin3":
-		print("Set speed to chase speed... ", CHASE_SPEED, " ", SPEED)
 	if motion.x == 0:
 		reboot_horizontal_motion()
 		
-	if name == "Goblin3":
-		print(motion)
-		
 	restore_speed()
-	
-	if name == "Goblin3":
-		print(motion)
 	
 	motion.x = get_chasing_direction() * SPEED
 	
 	if only_chases:
 		rays.right_corner.force_raycast_update()
 		rays.left_corner.force_raycast_update()
-	
-	if name == "Goblin3":
-		print("hehe", motion, !rays.right_corner.is_colliding(), !rays.left_corner.is_colliding())
 	
 	if motion.x > 0 and !rays.right_corner.is_colliding():
 		motion.x = 0
@@ -298,8 +287,6 @@ func set_orientation():
 
 func patrol():	
 	SPEED = PATROL_SPEED
-	if name == "Goblin3":
-		print("Set speed to patrol speed... ", PATROL_SPEED, " ", SPEED)
 	if motion.x == 0:
 		reboot_horizontal_motion()
 		

@@ -32,7 +32,7 @@ export var follow_camera = true
 var hp : int = 1
 var hp_current : int = 1
 
-enum State {IDLE, RUN, ATTACK, JUMP, TAKE_DAMAGE, DYING, REVIVING, DIALOGUE, DASH}
+enum State {IDLE, RUN, ATTACK, AERIAL_ATTACK, JUMP, TAKE_DAMAGE, DYING, REVIVING, DIALOGUE, DASH}
 var state = State.IDLE
 
 # jump related
@@ -47,6 +47,8 @@ var invincible = false
 
 # Upgrades the player can collect over time
 var upgrades = {
+	"attack": true,
+	"aerial_attack": true,
 	"double_jump" : false,
 	"dash" : false
 }
@@ -75,20 +77,12 @@ func check_hit_enemies(hitbox_name: String):
 func _ready():
 	if not emits_light:
 		$Light2D.hide()
-	if not follow_camera:
-		$Camera2D.current=false
 	# Setup player stats
 	hp = 4
 	hp_current = hp
 	
 	# Create an initial point to teleport to on death
 	spawn_location = position
-	
-	# Connect signals to health bar
-	var health_bar = get_node("/root/Game/UI/Overlay/HealthBar")
-	connect("upgrade_gained", health_bar, "_on_upgrade_gained")
-	connect("health_lost", health_bar, "_on_health_lost")
-	connect("reset_health", health_bar, "_on_health_reset")
 	
 func start_dialogue():
 	state = State.DIALOGUE
@@ -126,6 +120,10 @@ func _physics_process(delta):
 		_reset_jumps()
 	else:
 		in_air = true
+	
+	if state == State.AERIAL_ATTACK:
+		process_controls(delta)
+		motion = move_and_slide(motion, Vector2.UP, true)
 		
 	if state == State.IDLE or state == State.RUN or state == State.JUMP:
 		update_animation()
@@ -145,11 +143,6 @@ func debug_actions():
 		
 	# Doesn't do the trick
 	# motion.y = max(motion.y, JUMP_SPEED)
-
-func _check_HP():
-	
-	if hp_current <= 0:
-		_player_death()
 
 # Reset the number of jumps the player has, called when player hits floor
 func _reset_jumps():
@@ -251,6 +244,10 @@ func process_controls(delta):
 		motion.x = speed_change
 	else:
 		motion.x += speed_change
+		
+	if not in_air and state == State.AERIAL_ATTACK:
+		if animation_player.is_playing():
+			animation_player.stop(true)
 	
 	if in_air and right_pressed == left_pressed:
 		motion.x = 0
@@ -288,15 +285,25 @@ func process_controls(delta):
 			motion.y = jump_boost_speed
 			
 	# falling shortly by for example falling off a ledge allows a jump...
-	if in_air and state != State.JUMP:
+	if in_air and state != State.JUMP and state != State.AERIAL_ATTACK:
 		state = State.JUMP
 		get_tree().create_timer(0.1).connect("timeout", self, "_on_fall_jump")
 	
 	if state == State.IDLE or state == State.RUN:
 		if attack_pressed:
 			attack()
+	if state == State.JUMP:
+		if attack_pressed:
+			aerial_attack()
 	
 	motion.normalized()
+	
+func aerial_attack():
+	state = State.AERIAL_ATTACK
+	animation_player.play("aerial_attack")
+	yield(animation_player, "animation_finished")
+	if state == State.AERIAL_ATTACK:
+		state = State.IDLE
 	
 func attack():
 	state = State.ATTACK
@@ -353,23 +360,12 @@ func take_damage(damage : int):
 
 func take_enemy_damage(damage: int):
 	if not can_not_take_damage():
-		print("Taking enemy damage...")
 		if animation_player.is_playing():
 			animation_player.stop(true)
 		take_damage(damage)
 		var direction = sprites.scale.x
 		motion.y = -120
 		motion.x = direction * -80
-		print("motion in function", motion)
-		motion = move_and_slide(motion, Vector2.UP, true)
-
-func hit_spikes():
-	if not can_not_take_damage():
-		take_damage(1)
-		var direction = sprites.scale.x
-		motion.y = -120
-		motion.x = direction * -80
-		print("motion in function", motion)
 		motion = move_and_slide(motion, Vector2.UP, true)
 
 func set_checkpoint(point):

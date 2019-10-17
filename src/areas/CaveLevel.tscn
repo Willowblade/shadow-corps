@@ -5,15 +5,14 @@
 [ext_resource path="res://src/tilesets/Cave.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 253.722, 144.104 )
+extents = Vector2( 256.039, 159.865 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 393.756, 143.848 )
+extents = Vector2( 399.881, 159.856 )
 
-[node name="CaveLevel" index="0" instance=ExtResource( 1 )]
+[node name="CaveLevel" instance=ExtResource( 1 )]
 
 [node name="BaseRoom" parent="Rooms" index="0" instance=ExtResource( 2 )]
-editor/display_folded = true
 player_camera = true
 
 [node name="Cave" parent="Rooms/BaseRoom/Layout/Tilesets" index="0" instance=ExtResource( 3 )]
@@ -24,7 +23,7 @@ shape = SubResource( 1 )
 
 [node name="BaseRoom2" parent="Rooms" index="1" instance=ExtResource( 2 )]
 editor/display_folded = true
-position = Vector2( 511.926, 0 )
+position = Vector2( 512, 0 )
 player_camera = true
 
 [node name="Cave" parent="Rooms/BaseRoom2/Layout/Tilesets" index="0" instance=ExtResource( 3 )]

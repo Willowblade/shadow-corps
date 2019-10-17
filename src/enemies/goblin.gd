@@ -12,16 +12,15 @@ func _physics_process(delta):
 	move_gravity(delta)
 	set_animation()
 	
-	
 	if is_alive():
 		if state == State.PATROL:
 			patrol()
 		elif state == State.CHASE:
 			chase()
 		elif state == State.ATTACK:
-			pass
+			return
 		elif state == State.DYING:
-			pass
+			return
 			
 		if not moves:
 			motion.x = 0
