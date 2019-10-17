@@ -3,7 +3,7 @@ extends Node2D
 onready var level: Node = null
 onready var ui = $UI
 
-onready var hub: PackedScene = preload("res://src/areas/GoblinTestLevel.tscn")
+onready var hub: PackedScene = preload("res://src/areas/CaveLevel.tscn")
 
 var key_pressed = false
 
@@ -31,7 +31,7 @@ func _input(event):
 			load_level(load("res://src/areas/Stratae.tscn"))
 		elif Input.is_key_pressed(KEY_2):
 			key_pressed = true
-			load_level(load("res://src/areas/CaveTestRoom.tscn"))
+			load_level(load("res://src/areas/CaveLevel.tscn"))
 		elif Input.is_key_pressed(KEY_3):
 			key_pressed = true
 			load_level(load("res://src/areas/GoblinTestLevel.tscn"))

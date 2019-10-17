@@ -23,6 +23,7 @@ var JUMP_SPEED = -230
 var DOUBLE_JUMP_SPEED = (JUMP_SPEED * 0.925)
 
 onready var effect_player = AudioEngine.effects.effect_players[9]
+onready var camera = $Camera2D
 
 export var emits_light = false
 export var follow_camera = true

@@ -1,14 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://src/areas/room.gd" type="Script" id=1]
-[ext_resource path="res://src/player/Player.tscn" type="PackedScene" id=2]
 
 [node name="BaseRoom" type="Node2D"]
 script = ExtResource( 1 )
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-offset = Vector2( 140, 0 )
-transform = Transform2D( 1, 0, 0, 1, 140, 0 )
 
 [node name="Layout" type="Node2D" parent="."]
 
@@ -26,11 +21,14 @@ transform = Transform2D( 1, 0, 0, 1, 140, 0 )
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 33.5845, 37.7354 )
-
 [node name="Zones" type="Node2D" parent="."]
 
 [node name="Audio" type="Node2D" parent="Zones"]
 
 [node name="Dialogue" type="Node2D" parent="Zones"]
+
+[node name="RoomZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomZone"]
+
+[node name="CameraAnchorPoint" type="Position2D" parent="."]

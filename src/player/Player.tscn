@@ -159,6 +159,7 @@ extents = Vector2( 10, 5.98746 )
 ]]
 collision_layer = 2
 script = ExtResource( 1 )
+follow_camera = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
