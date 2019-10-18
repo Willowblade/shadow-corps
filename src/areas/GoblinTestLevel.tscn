@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 635.587, 342.041 )
 
-[node name="GoblinTestLevel" index="0" instance=ExtResource( 1 )]
+[node name="GoblinTestLevel" instance=ExtResource( 1 )]
 
 [node name="GoblinTestLevel" parent="Rooms" index="0" instance=ExtResource( 2 )]
 player_camera = true

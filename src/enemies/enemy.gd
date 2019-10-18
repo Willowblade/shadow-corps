@@ -5,7 +5,7 @@ const UP = Vector2(0, -1)
 
 onready var death_sound = null
 
-enum State {IDLE, PATROL, CHASE, ATTACK, TAKE_DAMAGE, DYING, TAKE_DAMAGE, DIALOGUE, DEATH}
+enum State {IDLE, PATROL, CHASE, ATTACK, DYING, TAKE_DAMAGE, DIALOGUE, DEATH}
 
 export(bool) var invincible = false
 
@@ -50,12 +50,12 @@ onready var rays = {
 }
 
 onready var detection_zone = $DetectionZone
+onready var chase_zone = $ChaseZone
 
 onready var hit_detection_area = $AttackDetectionArea
 onready var touch_damage_area = $TouchDamageArea
 
 onready var attack_hit_boxes = {
-	"attack": $Hitboxes/Attack
 }
 
 onready var attack_timer = $AttackTimer as Timer
@@ -91,8 +91,13 @@ func check_touch_damage():
 		chasing.take_enemy_damage(1)
 
 func _ready():
-	detection_zone.connect("body_entered", self, "_on_body_entered")
-	detection_zone.connect("body_exited", self, "_on_body_exited")
+	if chase_zone.get_child_count() == 0:
+		detection_zone.connect("body_entered", self, "_on_body_detected")
+		detection_zone.connect("body_exited", self, "_on_body_exited")
+	else:
+		detection_zone.connect("body_entered", self, "_on_body_detected")
+		chase_zone.connect("body_exited", self, "_on_body_exited")
+		
 	stats.health = HEALTH
 	
 	attack_timer.connect("timeout", self, "_on_attack_timer_timeout")
@@ -102,7 +107,7 @@ func _ready():
 	_initialize()
 	set_physics_process(true)
 	
-func _on_body_entered(body):
+func _on_body_detected(body):
 	if body is Player:
 		set_chase(body)
 				
@@ -136,7 +141,7 @@ func set_patrol():
 	
 func set_chase(player):
 	chasing = player
-	if state == State.PATROL:
+	if state == State.PATROL or state == State.IDLE:
 		state = State.CHASE
 	
 	
@@ -177,8 +182,6 @@ func _die():
 		
 	if death_sound:
 		play_effect(death_sound)
-		
-	$CollisionShape2D.shape = null
 
 	# disables collision
 	for child in touch_damage_area.get_children():
@@ -192,6 +195,9 @@ func _die():
 	yield(sprite, "animation_finished")
 
 	state = State.DEATH
+	print("Death")
+	yield(get_tree().create_timer(5), "timeout")
+	print("Dead")
 	set_physics_process(false)
 
 #	sprite.hide()
