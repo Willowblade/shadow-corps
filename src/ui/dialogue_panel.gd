@@ -15,6 +15,8 @@ onready var target_sprite = $"../TargetSprite"
 
 onready var speaker_name = $SpeakerName
 
+onready var skip_button = $SkipButton
+
 onready var portraits = {
 	"klaus": preload("res://assets/graphics/portraits/klaus.png"),
 	"orubo": preload("res://assets/graphics/portraits/orubo.png"),
@@ -46,6 +48,7 @@ var current_line = 0
 signal finished
 
 func _ready():
+	skip_button.connect("pressed", self, "_on_skip_pressed")
 	text_label.set_override_selected_font_color(true)
 	visible = false
 
@@ -111,11 +114,22 @@ func show_line():
 		emit_signal("finished")
 #		NodeRegistry.player.end_dialogue()
 
+func end_dialogue():
+	current_line = len(current_dialogue.parts)
+	player_sprite.hide()
+	target_sprite.hide()
+	visible = false
+	trigger_event()
+	emit_signal("finished")
+
 func continue_dialogue():
 	player_sprite.hide()
 	target_sprite.hide()
 	current_line += 1
 	show_line()
+	
+func _on_skip_pressed():
+	end_dialogue()
 
 func trigger_event():
 	match current_dialogue_name:

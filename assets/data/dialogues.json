@@ -83,5 +83,177 @@
 				"speaker": "jute"
 			}
 		]
+	},
+	"middle": {
+		"parts": [
+			{
+				"text": "Settle down and take your seats everyone.",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "Let me start by saying welcome to Statae Academy",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "I am Ms.Cross, head of the Academys “Mystic Fauna and Familiars” Department.",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "Here at Statae Academy, we make it a point to use our time wisely.",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "Every minute we waste in here, is another minute that a Disturbance can take the lives of innocent civilians.",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "By joining Statae Academy, each and every one of you has decided to become a Libra.",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "To risk your lives in order to maintain balance in our world.",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "Your training here at Statae Academy will be gruelling, and thorough.",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "Any of you who don’t feel capable of meeting our expectations are free to leave at any time.",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "Questions? ",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "Err...",
+				"speaker": "orubo"
+			},
+			{
+				"text": "No?",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "Good.",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "Then let's get right to work. I will have every student come down to the front 1 at a time..",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "Your job is to focus on the Mana Shard within the summoning circle, as hard as you can.",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "After I recite the incantation, your Familiar will be summoned..",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "As you all should know, your Familiar is chosen by you.",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "Or more specifically, your spirit.",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "You will get one of the 6 elements.",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "Earth, Water, Air, Fire, Darkness, or Light.",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "After you receive your familiar, I ask that you sit down immediately.",
+				"speaker": "mrs.cross"
+			},
+			{
+				"text": "Now, lets begin.",
+				"speaker": "mrs.cross"
+			}
+		]
+	},
+	"end": {
+		"parts": [
+			{
+				"text": "FIREEEE!!! I knew it!",
+				"speaker": "kai"
+			},
+			{
+				"text": "I’m gonna name you Sal!",
+				"speaker": "kai"
+			},
+			{
+				"text": "Sal the Salamander... I would have never thought of that...",
+				"speaker": "jute"
+			},
+			{
+				"text": "I got Wind... I’m not sure what this thing even is...",
+				"speaker": "jute"
+			},
+			{
+				"text": "Jute, that would be a butterfly.. You got Air!",
+				"speaker": "lythe"
+			},
+			{
+				"text": "Orubo got a tortoise, so Earth!",
+				"speaker": "lythe"
+			},
+			{
+				"text": "Kai got a salamander, which certainly represents Fire.",
+				"speaker": "lythe"
+			},
+			{
+				"text": "I got a Fairy, which is Light!",
+				"speaker": "lythe"
+			},
+			{
+				"text": "And Klaus...",
+				"speaker": "lythe"
+			},
+			{
+				"text": "Dark.. Of all the elements, I got Dark?",
+				"speaker": "klaus"
+			},
+			{
+				"text": "More specifically, a depth dweller.",
+				"speaker": "lythe"
+			},
+			{
+				"text": "You do know the whole, light and dark, good and evil thing isn’t real Klaus.",
+				"speaker": "kai"
+			},
+			{
+				"text": "I know, but... Regardless- Dark it is!",
+				"speaker": "klaus"
+			},
+			{
+				"text": "Unless it's something other than earth.. .. ..",
+				"speaker": "klaus"
+			},
+			{
+				"text": "Remember what Ms.Cross said!",
+				"speaker": "lythe"
+			},
+			{
+				"text": "She can’t even recall the last time a Dark Familiar was summoned!",
+				"speaker": "lythe"
+			},
+			{
+				"text": "That makes you pretty special!",
+				"speaker": "lythe"
+			},
+			{
+				"text": "Right. I’m gonna go do my first attunement.",
+				"speaker": "klaus"
+			},
+			{
+				"text": "I’ll see you guys later.",
+				"speaker": "klaus"
+			}
+		]
 	}
 }

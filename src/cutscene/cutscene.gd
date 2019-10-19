@@ -7,13 +7,21 @@ signal finished
 var cutscenes = {
 	"start": {
 		"dialogue": "start"
+	},
+	"middle": {
+		"dialogue": "middle"
+	},
+	"end": {
+		"dialogue": "end"
 	}
 }
 
 
 func _ready():
 	NodeRegistry.ui.dialogue_panel.connect("finished", self, "_on_dialogue_finished")
-	NodeRegistry.ui.dialogue_panel.show_dialogue(cutscenes[cutscene].dialogue)
 
+func start():
+	NodeRegistry.ui.dialogue_panel.show_dialogue(cutscenes[cutscene].dialogue)
+	
 func _on_dialogue_finished():
 	emit_signal("finished")

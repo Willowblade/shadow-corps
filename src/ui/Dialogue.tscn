@@ -89,3 +89,10 @@ margin_bottom = 112.0
 rect_min_size = Vector2( 80, 80 )
 texture = ExtResource( 5 )
 expand = true
+
+[node name="SkipButton" type="Button" parent="DialoguePanel"]
+margin_left = 688.63
+margin_top = 137.991
+margin_right = 700.63
+margin_bottom = 157.991
+text = "SKIP..."

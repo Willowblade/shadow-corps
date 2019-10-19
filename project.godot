@@ -60,6 +60,7 @@ Flow="*res://src/globals/Flow.tscn"
 AudioEngine="*res://src/audio_engine/AudioEngine.tscn"
 Preferences="*res://src/globals/Preferences.tscn"
 NodeRegistry="*res://src/globals/NodeRegistry.tscn"
+Transitions="*res://src/globals/Transitions.tscn"
 
 [importer_defaults]
 
