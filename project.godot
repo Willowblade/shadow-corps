@@ -50,7 +50,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Shadow Corps."
+config/name="Shadow Core"
 run/main_scene="res://src/Game.tscn"
 config/icon="res://icon.png"
 
