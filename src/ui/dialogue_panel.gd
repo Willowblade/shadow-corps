@@ -40,7 +40,7 @@ onready var names = {
 	"kai": "Kai",
 	"lythe": "Lythe",
 	"jute": "Jute",
-	"mscross": "Mrs. Cross",
+	"mscross": "Mrs. Kaoru",
 }
 	
 var current_dialogue_name = ""
