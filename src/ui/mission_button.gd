@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 class_name MissionButton
 
 export(bool) var locked = false

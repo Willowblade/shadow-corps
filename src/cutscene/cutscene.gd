@@ -21,7 +21,11 @@ func _ready():
 	NodeRegistry.ui.dialogue_panel.connect("finished", self, "_on_dialogue_finished")
 
 func start():
-	NodeRegistry.ui.dialogue_panel.show_dialogue(cutscenes[cutscene].dialogue)
+	NodeRegistry.ui.open_dialogue(cutscenes[cutscene].dialogue)
+	# NodeRegistry.ui.dialogue_panel.show_dialogue(cutscenes[cutscene].dialogue)
+	
+func stop():
+	NodeRegistry.ui.dialogue_panel.end_dialogue()
 	
 func _on_dialogue_finished():
 	emit_signal("finished")

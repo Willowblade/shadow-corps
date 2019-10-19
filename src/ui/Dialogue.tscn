@@ -25,13 +25,13 @@ mouse_filter = 2
 
 [node name="PlayerSprite" type="Sprite" parent="."]
 visible = false
-position = Vector2( 339.476, -326.877 )
+position = Vector2( 261.283, -326.877 )
 scale = Vector2( 12, 12 )
 texture = ExtResource( 1 )
 
 [node name="TargetSprite" type="Sprite" parent="."]
 visible = false
-position = Vector2( 671.737, -333.493 )
+position = Vector2( 748.644, -333.493 )
 scale = Vector2( 12, 12 )
 texture = ExtResource( 1 )
 

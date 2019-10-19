@@ -31,11 +31,12 @@ var key_pressed = false
 func _ready():
 	NodeRegistry.register_game(self)
 	NodeRegistry.register_ui(ui)
-	load_cutscene("start")
+#	load_cutscene("start")
+	load_hub()
 	
 func reset_contents():
-	
 	if cutscene != null:
+		cutscene.stop()
 		cutscene.queue_free()
 		cutscene = null
 	if level != null:
@@ -44,8 +45,9 @@ func reset_contents():
 	
 func load_cutscene(cutscene_name: String):
 	var cutscene_data = cutscenes[cutscene_name]
-	Transitions.fade_to_opaque()
-	yield(Transitions, "transition_completed")
+	if level != null or cutscene != null:
+		Transitions.fade_to_opaque()
+		yield(Transitions, "transition_completed")
 	reset_contents()
 	cutscene = cutscene_data.scene.instance()
 	add_child(cutscene)
@@ -65,8 +67,9 @@ func load_hub():
 	load_level(hub)
 	
 func load_level(level_scene: PackedScene):
-	Transitions.fade_to_opaque()
-	yield(Transitions, "transition_completed")
+	if level != null or cutscene != null:
+		Transitions.fade_to_opaque()
+		yield(Transitions, "transition_completed")
 	reset_contents()
 	level = level_scene.instance()
 	add_child(level)
@@ -75,29 +78,38 @@ func load_level(level_scene: PackedScene):
 	Transitions.fade_to_transparant()
 	yield(Transitions, "transition_completed")
 	
+func insta_load(level_scene: PackedScene):
+	reset_contents()
+	ui.dialogue_panel.end_dialogue()
+	level = level_scene.instance()
+	add_child(level)
+#	level.trigger_camera()
+	NodeRegistry.register_level(level)
+	
 func _input(event):
 	if not key_pressed:
 
 		if Input.is_key_pressed(KEY_1):
 			key_pressed = true
-			load_level(load("res://src/areas/Stratae.tscn"))
+			insta_load(load("res://src/areas/StrataeLevel.tscn"))
 			
 		elif Input.is_key_pressed(KEY_2):
 			key_pressed = true
-			load_level(load("res://src/areas/CaveLevel.tscn"))
+			insta_load(load("res://src/areas/CaveLevel.tscn"))
 		elif Input.is_key_pressed(KEY_3):
 			key_pressed = true
-			load_level(load("res://src/areas/GoblinTestLevel.tscn"))
+			insta_load(load("res://src/areas/GoblinTestLevel.tscn"))
 		elif Input.is_key_pressed(KEY_4):
 			key_pressed = true
-			load_level(load("res://src/areas/BatTestLevel.tscn"))
+			insta_load(load("res://src/areas/BatTestLevel.tscn"))
 		elif Input.is_key_pressed(KEY_5):
 			key_pressed = true
-			load_level(load("res://src/areas/JobBoardTestLevel.tscn"))
+			insta_load(load("res://src/areas/JobBoardTestLevel.tscn"))
 		
 		elif Input.is_key_pressed(KEY_6):
 			key_pressed = true
-			load_level(load("res://src/cutscene/Cutscene.tscn"))
+			insta_load(load("res://src/cutscene/Cutscene.tscn"))
 	else:
 		key_pressed = false
+		
 	

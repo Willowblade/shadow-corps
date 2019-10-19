@@ -2,8 +2,7 @@
 
 [ext_resource path="res://src/ui/mission_button.gd" type="Script" id=1]
 
-[node name="MissionButton" type="Button"]
+[node name="MissionButton" type="TextureButton"]
 margin_right = 12.0
 margin_bottom = 20.0
-text = "Depart"
 script = ExtResource( 1 )

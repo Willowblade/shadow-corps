@@ -31,6 +31,7 @@ onready var statues = {
 	"kai": preload("res://assets/graphics/npc/kai.png"),
 	"lythe": preload("res://assets/graphics/npc/lythe.png"),
 	"jute": preload("res://assets/graphics/npc/jute.png"),
+	"mscross": preload("res://assets/graphics/npc/mscross.png"),
 }
 
 onready var names = {
@@ -39,22 +40,32 @@ onready var names = {
 	"kai": "Kai",
 	"lythe": "Lythe",
 	"jute": "Jute",
+	"mscross": "Mrs. Cross",
 }
 	
 var current_dialogue_name = ""
-var current_dialogue = {}
+var current_dialogue = {
+	"parts": []
+}
 var current_line = 0
 
+var should_pause = true
+
 signal finished
+signal close
 
 func _ready():
 	skip_button.connect("pressed", self, "_on_skip_pressed")
 	text_label.set_override_selected_font_color(true)
 	visible = false
+	set_process(false)
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_progress_dialogue"):
 		continue_dialogue()
+
+func initialize(information):
+	show_dialogue(information.name)
 
 func show_dialogue(dialogue_name):
 	current_dialogue_name = dialogue_name
@@ -64,6 +75,7 @@ func show_dialogue(dialogue_name):
 	
 	current_line = 0
 	visible = true
+	set_process(true)
 	show_line()
 	
 	
@@ -109,18 +121,20 @@ func show_line():
 		speaker_name.text = speaker_name_string
 			
 	else:
-		visible = false
-		trigger_event()
-		emit_signal("finished")
+		end_dialogue()
 #		NodeRegistry.player.end_dialogue()
 
 func end_dialogue():
+	if not is_processing():
+		return
+	set_process(false)
 	current_line = len(current_dialogue.parts)
 	player_sprite.hide()
 	target_sprite.hide()
 	visible = false
 	trigger_event()
 	emit_signal("finished")
+	emit_signal("close")
 
 func continue_dialogue():
 	player_sprite.hide()

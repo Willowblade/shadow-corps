@@ -87,44 +87,44 @@
 	"middle": {
 		"parts": [
 			{
-				"text": "Settle down and take your seats everyone.",
-				"speaker": "mrs.cross"
+				"text": "Settle down and listen to me, everyone.",
+				"speaker": "mscross"
 			},
 			{
 				"text": "Let me start by saying welcome to Statae Academy",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "I am Ms.Cross, head of the Academys “Mystic Fauna and Familiars” Department.",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "Here at Statae Academy, we make it a point to use our time wisely.",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "Every minute we waste in here, is another minute that a Disturbance can take the lives of innocent civilians.",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "By joining Statae Academy, each and every one of you has decided to become a Libra.",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "To risk your lives in order to maintain balance in our world.",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "Your training here at Statae Academy will be gruelling, and thorough.",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "Any of you who don’t feel capable of meeting our expectations are free to leave at any time.",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "Questions? ",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "Err...",
@@ -132,47 +132,47 @@
 			},
 			{
 				"text": "No?",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "Good.",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "Then let's get right to work. I will have every student come down to the front 1 at a time..",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "Your job is to focus on the Mana Shard within the summoning circle, as hard as you can.",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "After I recite the incantation, your Familiar will be summoned..",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "As you all should know, your Familiar is chosen by you.",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "Or more specifically, your spirit.",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "You will get one of the 6 elements.",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "Earth, Water, Air, Fire, Darkness, or Light.",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "After you receive your familiar, I ask that you sit down immediately.",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			},
 			{
 				"text": "Now, lets begin.",
-				"speaker": "mrs.cross"
+				"speaker": "mscross"
 			}
 		]
 	},
@@ -252,6 +252,26 @@
 			},
 			{
 				"text": "I’ll see you guys later.",
+				"speaker": "klaus"
+			}
+		]
+	},
+	"instructions": {
+		"parts": [
+			{
+				"text": "Oh hi Klaus. Not sure what to do, I see?",
+				"speaker": "mscross"
+			}, {
+				"text": "It's time for your first attunement. As we don't waste time, you can use the job board on my right side.",
+				"speaker": "mscross"
+			}, {
+				"text": "Open it and choose your mission by clicking an elevated area.",
+				"speaker": "mscross"
+			}, {
+				"text": "It's been a while since a new recruit visited the caves. Stay safe, Klaus.",
+				"speaker": "mscross"
+			}, {
+				"text": "Thank you.",
 				"speaker": "klaus"
 			}
 		]

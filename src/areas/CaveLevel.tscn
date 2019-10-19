@@ -43,6 +43,9 @@ player_camera = true
 position = Vector2( 3328, 320 )
 shape = ExtResource( 5 )
 
+[node name="Player" parent="." index="1"]
+position = Vector2( 1088.72, 20.987 )
+
 [node name="Camera" parent="." index="2"]
 current = true
 

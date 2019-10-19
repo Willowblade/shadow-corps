@@ -1,11 +1,19 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/ui/job_board.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/ui/jobboard.png" type="Texture" id=2]
-[ext_resource path="res://src/ui/MissionButton.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/graphics/portraits/klaus.png" type="Texture" id=4]
-[ext_resource path="res://src/areas/CaveLevel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/areas/JobBoardTestLevel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/graphics/misc/Stratae/Board_Board.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/misc/Stratae/Board_Papers.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/misc/Stratae/Board_Map Shading.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/misc/Stratae/Board_Map Lines.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/misc/Stratae/Board_Missions.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/misc/Stratae/Board_Shadow - 50.png" type="Texture" id=8]
+[ext_resource path="res://src/ui/MissionButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/graphics/misc/Stratae/Board_R5.png" type="Texture" id=10]
+[ext_resource path="res://assets/graphics/portraits/klaus.png" type="Texture" id=11]
+[ext_resource path="res://src/areas/CaveLevel.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/areas/JobBoardTestLevel.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/graphics/misc/Stratae/Board_Twine.png" type="Texture" id=14]
 
 [node name="JobBoard" type="Control"]
 pause_mode = 2
@@ -16,6 +24,7 @@ margin_bottom = 0.773804
 script = ExtResource( 1 )
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 margin_left = 263.0
 margin_top = 39.0
 margin_right = 775.0
@@ -23,6 +32,7 @@ margin_bottom = 472.0
 mouse_filter = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 margin_left = 279.337
 margin_top = 52.0
 margin_right = 599.337
@@ -32,30 +42,82 @@ rect_clip_content = true
 texture = ExtResource( 2 )
 stretch_mode = 1
 
+[node name="TextureRect2" type="TextureRect" parent="."]
+margin_left = 92.849
+margin_top = 1.80097
+margin_right = 412.849
+margin_bottom = 241.801
+rect_scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 3 )
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+margin_left = 92.849
+margin_top = 1.80097
+margin_right = 412.849
+margin_bottom = 241.801
+rect_scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 4 )
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+margin_left = 92.849
+margin_top = 1.80097
+margin_right = 412.849
+margin_bottom = 241.801
+rect_scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 5 )
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+margin_left = 92.849
+margin_top = 1.80097
+margin_right = 412.849
+margin_bottom = 241.801
+rect_scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 6 )
+
+[node name="TextureRect6" type="TextureRect" parent="."]
+margin_left = 92.849
+margin_top = 1.80097
+margin_right = 412.849
+margin_bottom = 241.801
+rect_scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 7 )
+
+[node name="TextureRect7" type="TextureRect" parent="."]
+margin_left = 92.849
+margin_top = 1.80097
+margin_right = 412.849
+margin_bottom = 241.801
+rect_scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 8 )
+
 [node name="MissionButtons" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="MissionA" parent="MissionButtons" instance=ExtResource( 3 )]
-margin_left = 337.687
-margin_top = 156.869
-margin_right = 392.687
-margin_bottom = 176.869
-title = "First Steps"
-description = "A mysterious darkness has taken over town. You're being sent in to investigate."
-thumbnail = ExtResource( 4 )
-mission = ExtResource( 5 )
+[node name="MissionA" parent="MissionButtons" instance=ExtResource( 9 )]
+margin_left = 435.514
+margin_top = 182.119
+margin_right = 455.514
+margin_bottom = 198.119
+rect_scale = Vector2( 2.5, 2.5 )
+texture_normal = ExtResource( 10 )
+title = "First Attunement"
+description = "Your first attunement. To get in touch with your power of darkness, you should seek it out. The caves near the northern border are perfect."
+thumbnail = ExtResource( 11 )
+mission = ExtResource( 12 )
 
-[node name="MissionB" parent="MissionButtons" instance=ExtResource( 3 )]
+[node name="MissionB" parent="MissionButtons" instance=ExtResource( 9 )]
+visible = false
 margin_left = 367.025
 margin_top = 365.229
 margin_right = 422.025
 margin_bottom = 385.229
 title = "Inception"
-thumbnail = ExtResource( 4 )
-mission = ExtResource( 6 )
+thumbnail = ExtResource( 11 )
+mission = ExtResource( 13 )
 
-[node name="MissionC" parent="MissionButtons" instance=ExtResource( 3 )]
+[node name="MissionC" parent="MissionButtons" instance=ExtResource( 9 )]
+visible = false
 margin_left = 544.251
 margin_top = 294.578
 margin_right = 599.251
@@ -63,8 +125,23 @@ margin_bottom = 314.578
 locked = true
 title = "Locked"
 
+[node name="TextureRect8" type="TextureRect" parent="."]
+margin_left = 92.849
+margin_top = 1.80097
+margin_right = 412.849
+margin_bottom = 241.801
+rect_scale = Vector2( 2.5, 2.5 )
+mouse_filter = 2
+texture = ExtResource( 14 )
+
+[node name="ReturnButton" type="Button" parent="."]
+margin_left = 701.611
+margin_top = 88.0
+margin_right = 730.611
+margin_bottom = 110.0
+text = "X"
+
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
-visible = true
 margin_left = 373.385
 margin_top = 161.853
 margin_right = 660.385
@@ -93,7 +170,7 @@ margin_right = 161.278
 margin_bottom = 161.942
 rect_scale = Vector2( 0.3, 0.3 )
 rect_clip_content = true
-texture = ExtResource( 4 )
+texture = ExtResource( 11 )
 
 [node name="Title" type="Label" parent="ConfirmationDialog/Control"]
 margin_left = 84.2544
@@ -102,10 +179,3 @@ margin_right = 233.254
 margin_bottom = 44.8485
 text = "The Game Commences"
 valign = 1
-
-[node name="ReturnButton" type="Button" parent="."]
-margin_left = 456.548
-margin_top = 443.226
-margin_right = 554.548
-margin_bottom = 464.226
-text = "Return"

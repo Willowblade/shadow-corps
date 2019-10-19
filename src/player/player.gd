@@ -124,13 +124,22 @@ func _physics_process(delta):
 	if state == State.AERIAL_ATTACK:
 		process_controls(delta)
 		motion = move_and_slide(motion, Vector2.UP, true)
-		
-	if state == State.IDLE or state == State.RUN or state == State.JUMP:
+	
+	if state == State.JUMP:
 		update_animation()
 		set_orientation()
 		process_controls(delta)
 		
 		motion = move_and_slide(motion, Vector2.UP, true)
+		
+	if state == State.IDLE or state == State.RUN:
+		update_animation()
+		set_orientation()
+		process_controls(delta)
+
+		motion = move_and_slide_with_snap(motion, Vector2(0, 6), Vector2.UP, true)
+		
+		# motion = move_and_slide_with_snap(motion, Vector2.UP, true)
 
 	debug_actions()
 
@@ -307,7 +316,7 @@ func aerial_attack():
 	
 func attack():
 	state = State.ATTACK
-	animation_player.play("attack")
+	animation_player.play("attack", -1, 2.0)
 	yield(animation_player, "animation_finished")
 	if state == State.ATTACK:
 		state = State.IDLE

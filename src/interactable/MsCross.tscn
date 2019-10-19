@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/interactable/Interactable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/interactable/mscross.gd" type="Script" id=2]
+[ext_resource path="res://assets/graphics/npc/mscross.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6.58902, 10 )
+
+[node name="MsCross" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( 0, -18.4589 )
+shape = SubResource( 1 )
+
+[node name="Tooltip" parent="." index="1"]
+position = Vector2( 0, -45.9937 )
+
+[node name="Sprite" type="Sprite" parent="." index="2"]
+position = Vector2( 0, -35.4153 )
+texture = ExtResource( 3 )

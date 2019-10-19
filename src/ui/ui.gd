@@ -21,6 +21,8 @@ func _ready():
 	for child in menus_node.get_children():
 		child.hide()
 		child.connect("close", self, "_on_close_ui", [child])
+	
+	dialogue_panel.connect("close", self, "_on_close_ui", [dialogue_panel])
 
 func reset():
 	for child in menus_node.get_children():
@@ -30,11 +32,15 @@ func reset():
 	
 func open_job_board():
 	open_ui(job_board)
+	
+func open_dialogue(dialogue_name):
+	open_ui(dialogue_panel, {"name": dialogue_name})
 
 func open_ui(menu, information=null):
 	# naming is a soupie here.
 	if menu in open_uis:
 		return
+	if information:
 		menu.initialize(information)
 	menu.show()
 	if menu.should_pause:
