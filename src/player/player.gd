@@ -47,7 +47,7 @@ var invincible = false
 
 # Upgrades the player can collect over time
 var upgrades = {
-	"attack": true,
+	"attack": false,
 	"aerial_attack": true,
 	"double_jump" : false,
 	"dash" : false
@@ -142,6 +142,11 @@ func _physics_process(delta):
 		# motion = move_and_slide_with_snap(motion, Vector2.UP, true)
 
 	debug_actions()
+
+
+func _on_upgrade_consumed(upgrade: String):
+	print("Unlocked ", upgrade, self)
+	unlock_upgrade(upgrade)
 
 func debug_actions():	
 	if Input.is_action_just_pressed("debug_death"):
@@ -299,10 +304,10 @@ func process_controls(delta):
 		get_tree().create_timer(0.1).connect("timeout", self, "_on_fall_jump")
 	
 	if state == State.IDLE or state == State.RUN:
-		if attack_pressed:
+		if attack_pressed and upgrades.attack:
 			attack()
 	if state == State.JUMP:
-		if attack_pressed:
+		if attack_pressed and upgrades.attack:
 			aerial_attack()
 	
 	motion.normalized()

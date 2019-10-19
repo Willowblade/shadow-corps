@@ -25,7 +25,7 @@ func _physics_process(delta):
 		if not moves:
 			motion.x = 0
 		
-		motion = move_and_slide(motion, Vector2(0, -1))
+		motion = move_and_slide(motion, Vector2(0, -1), true)
 		
 	set_orientation()
 	

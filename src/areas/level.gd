@@ -21,6 +21,10 @@ func _ready():
 	for room in rooms:
 		room.zone.connect("body_entered", self, "_on_body_entered_room_zone", [room])
 		room.zone.connect("body_exited", self, "_on_body_exited_room_zone", [room])
+		
+	for upgrade in get_tree().get_nodes_in_group("upgrade"):
+		upgrade.connect("consume", player, "_on_upgrade_consumed")
+
 	
 func _on_player_death():
 	pass

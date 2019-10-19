@@ -4,6 +4,7 @@ extends Node
 var game: Node
 var ui: Node
 var level: Node
+var player: Node
 
 # alternative that leans to abuse really well, defined as above should prevent abuse.
 var registry = {
@@ -23,6 +24,9 @@ func unregister(node_name):
 	
 func register_game(node: Node):
 	game = node
+	
+func register_player(node: Node):
+	player = node
 
 func register_level(node: Node):
 	level = node

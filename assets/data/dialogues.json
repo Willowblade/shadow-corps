@@ -275,5 +275,19 @@
 				"speaker": "klaus"
 			}
 		]
+	},
+	"attack_powerup": {
+		"parts": [
+			{
+				"text": "I feel so powerful suddenly. What did Mrs. Kaoru say again?",
+				"speaker": "klaus"
+			}, {
+				"text": "'Remenber, during a new sensation it's rewarding to press the X key!'",
+				"speaker": "mscross"
+			}, {
+				"text": "So cryptic... What could she have meant?",
+				"speaker": "klaus"
+			}
+		]
 	}
 }

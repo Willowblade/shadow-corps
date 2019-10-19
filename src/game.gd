@@ -75,6 +75,7 @@ func load_level(level_scene: PackedScene):
 	add_child(level)
 #	level.trigger_camera()
 	NodeRegistry.register_level(level)
+	NodeRegistry.register_player(level.player)
 	Transitions.fade_to_transparant()
 	yield(Transitions, "transition_completed")
 	
@@ -85,6 +86,7 @@ func insta_load(level_scene: PackedScene):
 	add_child(level)
 #	level.trigger_camera()
 	NodeRegistry.register_level(level)
+	NodeRegistry.register_player(level.player)
 	
 func _input(event):
 	if not key_pressed:
