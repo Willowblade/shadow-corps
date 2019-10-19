@@ -4,8 +4,8 @@
 [ext_resource path="res://assets/graphics/ui/jobboard.png" type="Texture" id=2]
 [ext_resource path="res://src/ui/MissionButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/graphics/portraits/klaus.png" type="Texture" id=4]
-[ext_resource path="res://src/areas/CaveTestRoom.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/areas/Stratae.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/areas/CaveLevel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/areas/JobBoardTestLevel.tscn" type="PackedScene" id=6]
 
 [node name="JobBoard" type="Control"]
 pause_mode = 2
@@ -84,7 +84,7 @@ margin_top = 67.0
 margin_right = 268.0
 margin_bottom = 160.0
 mouse_filter = 1
-text = "A myserious darkness has taken over the town. You're being sent to investigate."
+text = "A mysterious darkness has taken over the town. You're being sent to investigate."
 
 [node name="Thumbnail" type="TextureRect" parent="ConfirmationDialog/Control"]
 margin_left = 11.2781

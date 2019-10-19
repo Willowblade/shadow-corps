@@ -1,17 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/ui/ui.gd" type="Script" id=1]
 [ext_resource path="res://src/ui/EscapeMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/ui/JobBoard.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/ui/dialogue_panel.gd" type="Script" id=4]
-[ext_resource path="res://assets/font/jancient.ttf" type="DynamicFontData" id=5]
-
-[sub_resource type="DynamicFont" id=1]
-size = 18
-outline_color = Color( 0, 0, 0, 1 )
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 5 )
+[ext_resource path="res://src/ui/Dialogue.tscn" type="PackedScene" id=4]
 
 [node name="UI" type="CanvasLayer"]
 pause_mode = 2
@@ -31,55 +23,4 @@ margin_bottom = 640.0
 
 [node name="JobBoard" parent="Menus" instance=ExtResource( 3 )]
 
-[node name="Dialogue" type="Control" parent="."]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 5.41653
-margin_top = -188.987
-margin_right = 5.4165
-margin_bottom = -23.9871
-mouse_filter = 2
-
-[node name="DialoguePanel" type="Panel" parent="Dialogue"]
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -260.0
-margin_top = 12.0
-margin_right = 260.0
-margin_bottom = -12.0
-script = ExtResource( 4 )
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Dialogue/DialoguePanel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = 26.0
-margin_right = -32.0
-margin_bottom = -26.0
-custom_fonts/normal_font = SubResource( 1 )
-text = "In publishing and graphic design, lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used before final copy is available..."
-
-[node name="Label" type="Label" parent="Dialogue/DialoguePanel"]
-margin_left = 451.632
-margin_top = 130.497
-margin_right = 496.632
-margin_bottom = 149.497
-text = "Enter..."
-
-[node name="PlayerPortait" type="TextureRect" parent="Dialogue/DialoguePanel"]
-margin_left = -77.869
-margin_top = 30.3498
-margin_right = 2.13098
-margin_bottom = 110.35
-rect_min_size = Vector2( 80, 80 )
-expand = true
-
-[node name="TargetPortrait" type="TextureRect" parent="Dialogue/DialoguePanel"]
-margin_left = 519.948
-margin_top = 29.8621
-margin_right = 599.948
-margin_bottom = 109.862
-rect_min_size = Vector2( 80, 80 )
-expand = true
+[node name="Dialogue" parent="." instance=ExtResource( 4 )]

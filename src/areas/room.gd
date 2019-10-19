@@ -9,7 +9,7 @@ onready var projectiles = $Projectiles
 onready var audio_zones = $Zones/Audio
 onready var dialogue_zones = $Zones/Dialogue
 
-onready var tilesets = $Tilesets
+onready var tilesets = $Layout/Tilesets
 
 onready var zone = $RoomZone
 onready var camera_anchor_point = $CameraAnchorPoint

@@ -6,12 +6,12 @@
 [ext_resource path="res://assets/graphics/enemy/goblin/idle/goblin_idle_1.png" type="Texture" id=4]
 [ext_resource path="res://assets/graphics/enemy/goblin/death/goblin_death.png" type="Texture" id=5]
 [ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_1.png" type="Texture" id=6]
-[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_0.png" type="Texture" id=7]
-[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_2.png" type="Texture" id=8]
-[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_3.png" type="Texture" id=9]
-[ext_resource path="res://assets/graphics/enemy/goblin/attack/goblin_attack_0.png" type="Texture" id=10]
-[ext_resource path="res://assets/graphics/enemy/goblin/attack/goblin_attack_1.png" type="Texture" id=11]
-[ext_resource path="res://assets/graphics/enemy/goblin/attack/goblin_attack_2.png" type="Texture" id=12]
+[ext_resource path="res://assets/graphics/enemy/goblin/attack/goblin_attack_0.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/enemy/goblin/attack/goblin_attack_1.png" type="Texture" id=8]
+[ext_resource path="res://assets/graphics/enemy/goblin/attack/goblin_attack_2.png" type="Texture" id=9]
+[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_0.png" type="Texture" id=10]
+[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_2.png" type="Texture" id=11]
+[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_3.png" type="Texture" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -30,15 +30,15 @@ animations = [ {
 "name": "take_damage",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "attack",
 "speed": 6.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=2]

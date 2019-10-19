@@ -3,8 +3,84 @@
 	"start": {
 		"parts": [
 			{
-				"text": "My man! I'm Klaus.",
+				"text": "This is it! Finally!",
+				"speaker": "kai"
+			},
+			{
+				"text": "Why do I feel like I'm the only one excited!?",
+				"speaker": "kai"
+			},
+			{
+				"text": "Well Kai, that's because you are. -smirks-",
 				"speaker": "klaus"
+			},
+			{
+				"text": "Oh c'mon Klaus, you are too!",
+				"speaker": "lythe"
+			},
+			{
+				"text": "Look at your hands, they're shaking!",
+				"speaker": "lythe"
+			},
+			{
+				"text": "Knowing Klaus.. He was up all night triple checking his school supplies...",
+				"speaker": "jute"
+			},
+			{
+				"text": "Not funny Jute! Being prepared is.. Very important!",
+				"speaker": "klaus"
+			},
+			{
+				"text": "I hope I get earth. I'm not sure if I could take care of any other kind of familiar.",
+				"speaker": "orubo"
+			},
+			{
+				"text": "Orubo, I think any familiar that ends up with you will be very lucky. -smiles-",
+				"speaker": "lythe"
+			},
+			{
+				"text": "Unless it's something other than earth.. .. ..",
+				"speaker": "klaus"
+			},
+			{
+				"text": "Quite the comedian Klaus.. At least Orubo knows what he wants...",
+				"speaker": "jute"
+			},
+			{
+				"text": "Fire! I want fire!",
+				"speaker": "kai"
+			},
+			{
+				"text": "Our school counselor said I'm pretty much guaranteed to get fire!",
+				"speaker": "kai"
+			},
+			{
+				"text": "I'm sure you will Kai! You certainly have a fiery spirit!",
+				"speaker": "lythe"
+			},
+			{
+				"text": "Not funny Jute! Being prepared is.. Very important!",
+				"speaker": "lythe"
+			},
+			{
+				"text": "Not really sure what my spirit would be considered.",
+				"speaker": "klaus"
+			},
+			{
+				"text": "But I'll be happy no matter what I get!",
+				"speaker": "klaus"
+			},
+			{
+				"text": "Step 1, get a Familiar.",
+				"speaker": "klaus"
+			},
+			{
+				"text": "Step 2, become the Legendary Klaus, Libra of Statae Academy! Muahaha!",
+				"speaker": "klaus"
+			},
+			{
+				"text": "It's our first year Klaus.. I think you skipped some steps..",
+				"speaker": "jute"
 			}
 		]
 	}

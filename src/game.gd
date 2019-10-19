@@ -22,13 +22,16 @@ func load_level(level_scene: PackedScene):
 		level = null
 	level = level_scene.instance()
 	add_child(level)
+#	level.trigger_camera()
 	NodeRegistry.register_level(level)
 	
 func _input(event):
 	if not key_pressed:
+
 		if Input.is_key_pressed(KEY_1):
 			key_pressed = true
 			load_level(load("res://src/areas/Stratae.tscn"))
+			
 		elif Input.is_key_pressed(KEY_2):
 			key_pressed = true
 			load_level(load("res://src/areas/CaveLevel.tscn"))
@@ -38,6 +41,13 @@ func _input(event):
 		elif Input.is_key_pressed(KEY_4):
 			key_pressed = true
 			load_level(load("res://src/areas/BatTestLevel.tscn"))
+		elif Input.is_key_pressed(KEY_5):
+			key_pressed = true
+			load_level(load("res://src/areas/JobBoardTestLevel.tscn"))
+		
+		elif Input.is_key_pressed(KEY_6):
+			key_pressed = true
+			load_level(load("res://src/cutscene/Cutscene.tscn"))
 	else:
 		key_pressed = false
 	
