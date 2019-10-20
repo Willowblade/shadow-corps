@@ -149,10 +149,10 @@ tracks/2/keys = {
 extents = Vector2( 5, 14 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 4.79274, 12.6281 )
+extents = Vector2( 14.307, 17.1442 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 10, 5.98746 )
+extents = Vector2( 12.4857, 13.1547 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
@@ -198,13 +198,13 @@ shape = SubResource( 4 )
 [node name="Attack" type="Area2D" parent="Hitboxes"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Attack"]
-position = Vector2( 27.927, -18.618 )
+position = Vector2( 24.5966, -18.618 )
 shape = SubResource( 5 )
 
 [node name="AerialAttack" type="Area2D" parent="Hitboxes"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/AerialAttack"]
-position = Vector2( 19.6751, -24.7054 )
+position = Vector2( 22.2975, -24.0061 )
 shape = SubResource( 6 )
 
 [node name="Light2D" type="Light2D" parent="."]

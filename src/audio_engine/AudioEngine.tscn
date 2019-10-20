@@ -6,6 +6,7 @@
 [ext_resource path="res://src/audio_engine/sounds.gd" type="Script" id=4]
 
 [node name="AudioEngine" type="Node"]
+pause_mode = 2
 script = ExtResource( 1 )
 MAX_SIMULTANEOUS_EFFECTS = 10
 

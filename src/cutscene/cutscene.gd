@@ -18,7 +18,9 @@ var cutscenes = {
 
 
 func _ready():
+	NodeRegistry.ui.health_bar.disable()
 	NodeRegistry.ui.dialogue_panel.connect("finished", self, "_on_dialogue_finished")
+	AudioEngine.play_background_music("res://assets/audio/music/Echo_of_Light.ogg")
 
 func start():
 	NodeRegistry.ui.open_dialogue(cutscenes[cutscene].dialogue)

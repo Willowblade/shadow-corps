@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Wake_of_Innocence.ogg-7f1036964629780a2665c42537880c20.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/music/Wake_of_Innocence.ogg"
+dest_files=[ "res://.import/Wake_of_Innocence.ogg-7f1036964629780a2665c42537880c20.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

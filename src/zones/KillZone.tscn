@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 14.5889, 3.53583 )
+
+[node name="KillZone" type="Area2D" groups=[
+"killzone",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2467.16, 429.546 )
+shape = SubResource( 1 )

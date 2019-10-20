@@ -4,6 +4,7 @@ extends CanvasLayer
 onready var menus_node = get_node("Menus")
 onready var dialogue_panel = get_node("Dialogue/DialoguePanel")
 onready var job_board = get_node("Menus/JobBoard")
+onready var health_bar = get_node("HealthBar")
 
 # menus that can be opened with hotkey
 onready var menus = [
@@ -13,7 +14,6 @@ onready var menus = [
 		"action": "ui_menu",
 	},
 ]
-
 
 var open_uis = []
 

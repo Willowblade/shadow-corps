@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/ui/ui.gd" type="Script" id=1]
 [ext_resource path="res://src/ui/EscapeMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/ui/JobBoard.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/ui/Dialogue.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/ui/health_bar.gd" type="Script" id=5]
+[ext_resource path="res://assets/graphics/ui/hp.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/ui/hp_mp.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/ui/mp.png" type="Texture" id=8]
 
 [node name="UI" type="CanvasLayer"]
 pause_mode = 2
@@ -24,3 +28,21 @@ margin_bottom = 640.0
 [node name="JobBoard" parent="Menus" instance=ExtResource( 3 )]
 
 [node name="Dialogue" parent="." instance=ExtResource( 4 )]
+
+[node name="HealthBar" type="Node2D" parent="."]
+position = Vector2( 107.776, 33.162 )
+scale = Vector2( 3, 3 )
+script = ExtResource( 5 )
+
+[node name="Health" type="Sprite" parent="HealthBar"]
+position = Vector2( -19.0562, -4.81527 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Frame" type="Sprite" parent="HealthBar"]
+texture = ExtResource( 7 )
+
+[node name="Mana" type="Sprite" parent="HealthBar"]
+position = Vector2( -18.1341, 2.04905 )
+texture = ExtResource( 8 )
+centered = false

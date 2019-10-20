@@ -4,8 +4,8 @@
 [ext_resource path="res://src/enemies/goblin.gd" type="Script" id=2]
 [ext_resource path="res://assets/graphics/enemy/goblin/idle/goblin_idle_0.png" type="Texture" id=3]
 [ext_resource path="res://assets/graphics/enemy/goblin/idle/goblin_idle_1.png" type="Texture" id=4]
-[ext_resource path="res://assets/graphics/enemy/goblin/death/goblin_death.png" type="Texture" id=5]
-[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_1.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/enemy/goblin/walk/goblin_walk_1.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/enemy/goblin/death/goblin_death.png" type="Texture" id=6]
 [ext_resource path="res://assets/graphics/enemy/goblin/attack/goblin_attack_0.png" type="Texture" id=7]
 [ext_resource path="res://assets/graphics/enemy/goblin/attack/goblin_attack_1.png" type="Texture" id=8]
 [ext_resource path="res://assets/graphics/enemy/goblin/attack/goblin_attack_2.png" type="Texture" id=9]
@@ -22,12 +22,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "death",
+"name": "take_damage",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
-"name": "take_damage",
+"name": "death",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
@@ -35,7 +35,7 @@ animations = [ {
 "name": "attack",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 5 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "walk",
 "speed": 5.0
@@ -104,7 +104,8 @@ extents = Vector2( 139.967, 62.8695 )
 
 [node name="Goblin" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-CHASE_SPEED = 100
+HEALTH = 14
+CHASE_SPEED = 80
 PATROL_SPEED = 60
 
 [node name="AnimatedSprite" parent="." index="0"]
@@ -116,15 +117,20 @@ offset = Vector2( 0, -35 )
 anims/attack = SubResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="2"]
+visible = false
 position = Vector2( 0, -10.0705 )
 shape = SubResource( 3 )
 
 [node name="AttackDetectionArea" parent="." index="3"]
+visible = false
 position = Vector2( -0.0565605, -4.41428 )
 
 [node name="CollisionShape2D" parent="AttackDetectionArea" index="0"]
 position = Vector2( 0, -9.09468 )
 shape = SubResource( 4 )
+
+[node name="RayCasts" parent="." index="4"]
+visible = false
 
 [node name="Down" parent="RayCasts" index="0"]
 enabled = true
@@ -155,9 +161,15 @@ position = Vector2( 4.53059, 0 )
 enabled = true
 cast_to = Vector2( 0, 10 )
 
+[node name="TouchDamageArea" parent="." index="6"]
+visible = false
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TouchDamageArea" index="0"]
 position = Vector2( 0, -8.06755 )
 shape = SubResource( 5 )
+
+[node name="Hitboxes" parent="." index="7"]
+visible = false
 
 [node name="Attack" type="Area2D" parent="Hitboxes" index="0"]
 
@@ -165,9 +177,15 @@ shape = SubResource( 5 )
 position = Vector2( 16.372, -16.0065 )
 shape = SubResource( 6 )
 
+[node name="DetectionZone" parent="." index="8"]
+visible = false
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone" index="0"]
 position = Vector2( -0.225922, 0.206551 )
 shape = SubResource( 7 )
+
+[node name="ChaseZone" parent="." index="9"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseZone" index="0"]
 position = Vector2( 0, 0.102226 )

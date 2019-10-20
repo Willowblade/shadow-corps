@@ -12,7 +12,8 @@ var room_history = []
 var current_room = null
 
 func _ready():
-		
+	NodeRegistry.ui.health_bar.enable()
+	
 	player.connect("death", self, "_on_player_death")
 	
 	for interactable in get_tree().get_nodes_in_group("interactive"):
@@ -24,8 +25,21 @@ func _ready():
 		
 	for upgrade in get_tree().get_nodes_in_group("upgrade"):
 		upgrade.connect("consume", player, "_on_upgrade_consumed")
+		
+	for killzone in get_tree().get_nodes_in_group("killzone"):
+		killzone.connect("body_entered", self, "_on_killzone_entered")
+		
+	for crystal in get_tree().get_nodes_in_group("crystal"):
+		crystal.connect("broken", self, "_on_crystal_broken")
 
-	
+func _on_crystal_broken():
+	for destroyable in get_tree().get_nodes_in_group("destroy"):
+		destroyable.queue_free()
+		
+func _on_killzone_entered(body):
+	if body is Player:
+		body.take_damage(999)
+		
 func _on_player_death():
 	pass
 	
@@ -43,10 +57,14 @@ func set_room(room):
 func _on_body_entered_room_zone(body, room):
 	print("entered room", room)
 	if body is Player:
+		if room.background_music:
+			AudioEngine.play_background_music(room.background_music)
 		var zone_extents = room.zone_extents()
-
 		set_room(room)
 		room_history.append(room)
+		print(room_history)
+		if len(room_history) == 1:
+			player.last_checkpoint = player.position
 		
 func _on_body_exited_room_zone(body, room):
 	if body is Player:
@@ -57,6 +75,9 @@ func _on_body_exited_room_zone(body, room):
 			print("Oh my")
 			if len(room_history):
 				set_room(room_history[0])
+				
+		if len(room_history):
+			player.last_checkpoint = player.position
 		
 	
 	

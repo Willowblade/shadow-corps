@@ -177,7 +177,7 @@ func _player_death():
 	
 	# Teleport player back to last checkpoint
 	if last_checkpoint != null:
-		position = last_checkpoint.position
+		position = last_checkpoint
 	
 	state = State.REVIVING
 	# Reset health and anim
@@ -321,7 +321,7 @@ func aerial_attack():
 	
 func attack():
 	state = State.ATTACK
-	animation_player.play("attack", -1, 2.0)
+	animation_player.play("attack", -1, 1.7)
 	yield(animation_player, "animation_finished")
 	if state == State.ATTACK:
 		state = State.IDLE

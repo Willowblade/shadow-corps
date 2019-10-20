@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Shadows_Pulse.ogg-2dd05312cd2ba9d265f80ffb8675f7c9.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/music/Shadows_Pulse.ogg"
+dest_files=[ "res://.import/Shadows_Pulse.ogg-2dd05312cd2ba9d265f80ffb8675f7c9.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=14.0

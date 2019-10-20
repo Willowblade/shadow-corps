@@ -2,22 +2,23 @@ extends Control
 
 
 onready var main_buttons = {
-	"start": get_node("MainMenuContainer/VBoxContainer/StartButton"),
-	"options": get_node("MainMenuContainer/VBoxContainer/OptionsButton"),
-	"exit": get_node("MainMenuContainer/VBoxContainer/ExitButton"),
+	"start": get_node("Buttons/StartButton"),
+	"options": get_node("Buttons/OptionsButton"),
+	"exit": get_node("Buttons/ExitButton"),
 }
 
 onready var options_buttons = {
-	"apply": get_node("OptionsMenuContainer/VBoxContainer/Buttons/ApplyButton"),
-	"back": get_node("OptionsMenuContainer/VBoxContainer/Buttons/BackButton"),
+	"apply": get_node("Options/Buttons/ApplyButton"),
+	"back": get_node("Options/Buttons/BackButton"),
 }
 
 onready var options_slider = {
-	"volume": get_node("OptionsMenuContainer/VBoxContainer/Volume/Slider"),
+	"volume": get_node("Options/Volume/Slider"),
 }
 
-onready var main_menu = get_node("MainMenuContainer")
-onready var options_menu = get_node("OptionsMenuContainer")
+onready var logo = get_node("Logo")
+onready var main_menu = get_node("Buttons")
+onready var options_menu = get_node("Options")
 
 onready var current_menu = main_menu
 
@@ -36,7 +37,8 @@ func _ready():
 	print(Preferences.preferences)
 	print(options_slider["volume"])
 	options_slider["volume"].value = Preferences.preferences.volume * 100
-	AudioEngine.play_sound("res://assets/audio/menu/menu.ogg")
+	
+	AudioEngine.play_sound("res://assets/audio/music/Wake_of_Innocence.ogg")
 	AudioEngine.set_master_volume(Preferences.preferences.volume)
 	
 func _on_start_button_pressed():
@@ -52,15 +54,18 @@ func go_to_menu(menu):
 	
 func _on_options_button_pressed():
 	Preferences.reset_temporary_preferences()
+	logo.hide()
 	go_to_menu(options_menu)
 	
 func _on_apply_button_pressed():
 	Preferences.save_preferences()
+	logo.show()
 	go_to_menu(main_menu)
 	
 func _on_back_button_pressed():
 	AudioEngine.set_master_volume(Preferences.preferences.volume)
 	options_slider["volume"].value = Preferences.preferences.volume * 100
+	logo.show()
 	go_to_menu(main_menu)
 	
 func _on_volume_changed(new_volume):

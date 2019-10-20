@@ -9,6 +9,7 @@ extents = Vector2( 253.758, 202.602 )
 [node name="StrataeLevel" instance=ExtResource( 1 )]
 
 [node name="Stratae" parent="Rooms" index="0" instance=ExtResource( 2 )]
+background_music = "res://assets/audio/music/Echo_of_Light.ogg"
 
 [node name="CollisionShape2D" parent="Rooms/Stratae/RoomZone" index="0"]
 position = Vector2( 154.738, 147.272 )

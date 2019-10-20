@@ -14,7 +14,7 @@ onready var tilesets = $Layout/Tilesets
 onready var zone = $RoomZone
 onready var camera_anchor_point = $CameraAnchorPoint
 
-export(AudioStreamOGGVorbis) var background_music = null
+export(String, FILE, "*.ogg") var background_music = null
 
 func _ready():
 	for zone in audio_zones.get_children():

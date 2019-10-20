@@ -289,5 +289,22 @@
 				"speaker": "klaus"
 			}
 		]
+	},
+	"congratulations": {
+		"parts": [
+			{
+				"text": "Mrs. Kaoru, I thought this first assignment would be safe? These enemies disobey the laws of physics and good game design!",
+				"speaker": "klaus"
+			}, {
+				"text": "Oh Klaus. Thank you for playing the game! We ran into issues with the enemies at the finish line, but hope you enjoyed the game!",
+				"speaker": "mscross"
+			}, {
+				"text": "Reaching this point should be a lot easier in the post-jam version. So if you're interested, sign up for that!",
+				"speaker": "mscross"
+			}, {
+				"text": "You've effectively reached the end of this level, though if you didn't go left after falling down, you may have missed out on a secret...",
+				"speaker": "mscross"
+			}
+		]
 	}
 }

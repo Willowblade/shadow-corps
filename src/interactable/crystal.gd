@@ -9,6 +9,8 @@ var state = State.STABLE
 onready var UpgradeScene = preload("res://src/interactable/Upgrade.tscn")
 
 
+signal broken
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprites.play("stable")
@@ -22,6 +24,7 @@ func add_powerup():
 	upgrade.position = Vector2(0, -12)
 	print(NodeRegistry.player)
 	upgrade.connect("consume", NodeRegistry.player, "_on_upgrade_consumed")
+	return upgrade
 
 func perform_interaction():
 	if state == State.STABLE:
@@ -56,10 +59,12 @@ func perform_interaction():
 		yield(sprites, "animation_finished")
 		sprites.playing = false
 		$Tooltip.hide()
+		emit_signal("broken")
 		yield(Transitions, "transition_completed")
-		add_powerup()
+		var upgrade = add_powerup()
 		# instantiate upgrade
 		Transitions.fade_to_transparant()
 		yield(Transitions, "transition_completed")
+		upgrade.enable()
 
 	

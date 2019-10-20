@@ -3,8 +3,8 @@
 [ext_resource path="res://src/enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/enemies/bat.gd" type="Script" id=2]
 [ext_resource path="res://assets/graphics/enemy/bat/idle/bat_idle.png" type="Texture" id=3]
-[ext_resource path="res://assets/graphics/enemy/bat/death/bat_death_0.png" type="Texture" id=4]
-[ext_resource path="res://assets/graphics/enemy/bat/fly/bat_flight_1.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/enemy/bat/fly/bat_flight_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/enemy/bat/death/bat_death_0.png" type="Texture" id=5]
 [ext_resource path="res://assets/graphics/enemy/bat/fly/bat_flight_0.png" type="Texture" id=6]
 [ext_resource path="res://assets/graphics/enemy/bat/fly/bat_flight_2.png" type="Texture" id=7]
 [ext_resource path="res://assets/graphics/enemy/bat/fly/bat_flight_3.png" type="Texture" id=8]
@@ -18,15 +18,15 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "death",
+"name": "take_damage",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "take_damage",
+"name": "death",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "fly",
 "speed": 8.0
@@ -44,11 +44,11 @@ extents = Vector2( 63.1378, 84.4924 )
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 232.624, 163.846 )
 
-[node name="Bat" instance=ExtResource( 1 )]
+[node name="Bat" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-CHASE_SPEED = 80
-PATROL_SPEED = 80
-SPEED = 80
+CHASE_SPEED = 70
+PATROL_SPEED = 70
+SPEED = 70
 
 [node name="AnimatedSprite" parent="." index="0"]
 position = Vector2( 0, -13.4674 )
@@ -57,8 +57,12 @@ animation = "death"
 playing = true
 
 [node name="CollisionShape2D" parent="." index="2"]
+visible = false
 position = Vector2( 0, 3.42056 )
 shape = SubResource( 2 )
+
+[node name="AttackDetectionArea" parent="." index="3"]
+visible = false
 
 [node name="CollisionShape2D" parent="AttackDetectionArea" index="0"]
 shape = null
@@ -66,13 +70,22 @@ shape = null
 [node name="RayCasts" parent="." index="4"]
 visible = false
 
+[node name="TouchDamageArea" parent="." index="6"]
+visible = false
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TouchDamageArea" index="0"]
 position = Vector2( 0, 4.24393 )
 shape = SubResource( 3 )
 
+[node name="DetectionZone" parent="." index="8"]
+visible = false
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone" index="0"]
 position = Vector2( 0, 85.0341 )
 shape = SubResource( 4 )
+
+[node name="ChaseZone" parent="." index="9"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseZone" index="0"]
 position = Vector2( 0, 8.3689 )
