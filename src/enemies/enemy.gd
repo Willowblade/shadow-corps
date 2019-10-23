@@ -25,6 +25,8 @@ export var FRICTION = 0
 export var GRAVITY = 10
 export var MAX_GRAVITY = 1000
 
+export var interrupted = true
+
 var state = State.PATROL
 
 var can_attack: bool = true
@@ -149,6 +151,17 @@ func _initialize():
 	# random placement
 	reboot_horizontal_motion()
 
+func take_player_damage(damage: int):
+	if animation_player.is_playing():
+		animation_player.stop(true)
+	take_damage(damage)
+	
+	if is_alive():
+		var direction = sprite.scale.x
+		motion.y = 0
+		motion.x = direction * -50
+		motion = move_and_slide(motion, Vector2.UP, true)
+
 func take_damage(damage: int):
 	if invincible:
 		return
@@ -159,12 +172,13 @@ func take_damage(damage: int):
 		if not is_alive():
 			_die()
 		else:
-			if state != State.ATTACK:
+			if state != State.ATTACK or (state == State.ATTACK and interrupted):
 				motion.x = 0
 				state = State.TAKE_DAMAGE
+
 				sprite.play("take_damage")
 				yield(sprite, "animation_finished")
-				
+
 				if chasing:
 					state = State.CHASE
 				else:
@@ -244,7 +258,6 @@ func chase():
 		attack()
 	
 func attack():
-	print("Should attack")
 	if can_attack:
 		motion.x = 0
 		
@@ -275,6 +288,8 @@ func set_animation():
 			sprite.play("idle")
 
 func set_orientation():
+	if state == State.TAKE_DAMAGE:
+		return
 	if motion.x < 0:
 		hit_detection_area.scale.x = -1
 		hit_detection_area.scale.x = -1

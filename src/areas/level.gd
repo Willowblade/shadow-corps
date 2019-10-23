@@ -12,6 +12,11 @@ var room_history = []
 var current_room = null
 
 func _ready():
+	var js_return = JavaScript.eval("var myNumber = 1; myNumber + 2;")
+	if js_return:
+		for lamp in get_tree().get_nodes_in_group("lamp"):
+			lamp.queue_free()
+			
 	NodeRegistry.ui.health_bar.enable()
 	
 	player.connect("death", self, "_on_player_death")

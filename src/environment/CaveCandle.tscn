@@ -3,7 +3,9 @@
 [ext_resource path="res://assets/graphics/tilesets/tileset_cave_1.png" type="Texture" id=1]
 [ext_resource path="res://assets/graphics/environment/candle-light.png" type="Texture" id=2]
 
-[node name="CaveCandle" type="Sprite"]
+[node name="CaveCandle" type="Sprite" groups=[
+"lamp",
+]]
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 112, 32, 16, 16 )

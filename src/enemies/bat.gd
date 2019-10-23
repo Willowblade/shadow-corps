@@ -29,8 +29,7 @@ func _physics_process(delta):
 	elif state == State.ATTACK:
 		return
 	elif state == State.TAKE_DAMAGE:
-		motion.x = 0
-		motion.y = 0
+		motion.x -= motion.x * delta * 5
 	elif state == State.DYING:
 		if GRAVITY < 0:
 			GRAVITY = -GRAVITY

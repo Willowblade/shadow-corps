@@ -10,9 +10,6 @@ extents = Vector2( 255.891, 150.541 )
 
 [node name="Level" instance=ExtResource( 1 )]
 
-[node name="Rooms" parent="." index="0"]
-editor/display_folded = true
-
 [node name="BaseRoom" parent="Rooms" index="0" instance=ExtResource( 2 )]
 position = Vector2( 0, -0.19371 )
 

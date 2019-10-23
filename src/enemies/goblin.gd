@@ -21,6 +21,8 @@ func _physics_process(delta):
 			return
 		elif state == State.DYING:
 			return
+		elif state == State.TAKE_DAMAGE:
+			motion.x -= motion.x * delta * 5
 			
 		if not moves:
 			motion.x = 0

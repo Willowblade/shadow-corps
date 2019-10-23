@@ -47,7 +47,7 @@ var invincible = false
 
 # Upgrades the player can collect over time
 var upgrades = {
-	"attack": false,
+	"attack": true,
 	"aerial_attack": true,
 	"double_jump" : false,
 	"dash" : false
@@ -72,7 +72,7 @@ func check_hit_enemies(hitbox_name: String):
 	var hitbox = hitboxes[hitbox_name]
 	for body in hitbox.get_overlapping_bodies():
 		if body.is_in_group("enemies"):
-			body.take_damage(5)
+			body.take_player_damage(5)
 
 func _ready():
 	if not emits_light:
@@ -171,8 +171,11 @@ func wait_for_animation(animation: String):
 
 func _player_death():
 	# Death animation
+	invincible = true
 	state = State.DYING
+	print("waiting for animation")
 	wait_for_animation("die")
+	print("waited for animation")
 	yield(get_tree().create_timer(1),"timeout")
 	
 	# Teleport player back to last checkpoint
@@ -182,10 +185,14 @@ func _player_death():
 	state = State.REVIVING
 	# Reset health and anim
 	hp_current = hp
-	wait_for_animation("revive")
+#	wait_for_animation("revive")
 	emit_signal("death")
 	emit_signal("reset_health")
 	state = State.IDLE
+	yield(get_tree().create_timer(0.5),"timeout")
+	invincible = false
+
+
 
 func play_effect(effect: String):
 	effect_player.play_effect(effect, global_position)
@@ -314,7 +321,7 @@ func process_controls(delta):
 	
 func aerial_attack():
 	state = State.AERIAL_ATTACK
-	animation_player.play("aerial_attack")
+	animation_player.play("aerial_attack", -1, 1.7)
 	yield(animation_player, "animation_finished")
 	if state == State.AERIAL_ATTACK:
 		state = State.IDLE
@@ -350,6 +357,9 @@ func unlock_upgrade(power_gained : String):
 func can_not_take_damage():
 	return invincible or state == State.DYING or state == State.REVIVING or state == State.DIALOGUE
 
+func is_alive():
+	return hp_current > 0
+
 # Called when player takes damage
 func take_damage(damage : int):
 	if can_not_take_damage():
@@ -359,16 +369,17 @@ func take_damage(damage : int):
 		
 	emit_signal("health_lost", damage)
 	hp_current -= damage
-	if hp_current <= 0:
+	if not is_alive():
 		_player_death()
 	else:
 		state = State.TAKE_DAMAGE
 		$AnimatedSprite.material = load("res://src/player/shader.tres")
 		invincible = true
 		sprites.play("damage")
-		yield(get_tree().create_timer(0.45), "timeout")
+		yield(get_tree().create_timer(0.4), "timeout")
 		state = State.IDLE
-		yield(get_tree().create_timer(0.6), "timeout")
+		motion.x = 0
+		yield(get_tree().create_timer(0.9), "timeout")
 		invincible = false
 		$AnimatedSprite.material = null
 
@@ -377,10 +388,11 @@ func take_enemy_damage(damage: int):
 		if animation_player.is_playing():
 			animation_player.stop(true)
 		take_damage(damage)
-		var direction = sprites.scale.x
-		motion.y = -120
-		motion.x = direction * -80
-		motion = move_and_slide(motion, Vector2.UP, true)
+		if is_alive():
+			var direction = sprites.scale.x
+			motion.y = -80
+			motion.x = direction * -60
+			motion = move_and_slide(motion, Vector2.UP, true)
 
 func set_checkpoint(point):
 	spawn_location = point.position
