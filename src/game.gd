@@ -31,9 +31,10 @@ var key_pressed = false
 func _ready():
 	NodeRegistry.register_game(self)
 	NodeRegistry.register_ui(ui)
-#	load_cutscene("start")
+	load_cutscene("start")
+	set_process_input(false)
 #	load_hub()
-	load_level(load("res://src/areas/GoblinTestLevel.tscn"))
+	# load_level(load("res://src/areas/CaveLevel.tscn"))
 	
 func reset_contents():
 	if cutscene != null:

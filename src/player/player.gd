@@ -47,8 +47,8 @@ var invincible = false
 
 # Upgrades the player can collect over time
 var upgrades = {
-	"attack": true,
-	"aerial_attack": true,
+	"attack": false,
+	# "aerial_attack": false,
 	"double_jump" : false,
 	"dash" : false
 }

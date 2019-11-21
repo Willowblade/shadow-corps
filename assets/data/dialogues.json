@@ -289,16 +289,16 @@
 	"congratulations": {
 		"parts": [
 			{
-				"text": "Mrs. Kaoru, I thought this first assignment would be safe? These enemies disobey the laws of physics and good game design!",
+				"text": "Mrs. Kaoru, I thought this first assignment was a trainwreck! Did they finally fix the combat?",
 				"speaker": "klaus"
 			}, {
-				"text": "Oh Klaus. Thank you for playing the game! We ran into issues with the enemies at the finish line, but hope you enjoyed the game!",
+				"text": "Oh Klaus. Thank you for playing the game! This is the first post-jam version with an update to the combat!",
 				"speaker": "mscross"
 			}, {
-				"text": "Reaching this point should be a lot easier in the post-jam version. So if you're interested, sign up for that!",
+				"text": "We'll add more content in a future version, but we're still figuring that out! You can always comment if you want to see something in the game!",
 				"speaker": "mscross"
 			}, {
-				"text": "You've effectively reached the end of this level, though if you didn't go left after falling down, you may have missed out on a secret...",
+				"text": "Again, thanks for playing! See you in the next build ;)",
 				"speaker": "mscross"
 			}
 		]
